@@ -11,6 +11,7 @@ import { ViewReportComponent } from './pages/view-report/view-report.component';
 import { AddReportComponent } from './shared/add-report/add-report.component';
 import { DocumentComponent } from './document/document.component';
 import { LeadsComponent } from './pages/leads/leads.component';
+import { NurseVerifyDocumentComponent } from './pages/nurse-verify-document/nurse-verify-document.component';
 
 const routes: Routes = [
   { path: '', component: NurseComponent,
@@ -59,6 +60,10 @@ const routes: Routes = [
       {
         path:'leads',
         component:LeadsComponent
+      },
+      {
+        path:'nurseverifydocument',
+        component:NurseVerifyDocumentComponent
       }
     ]
    }

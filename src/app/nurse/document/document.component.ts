@@ -25,15 +25,26 @@ export class DocumentComponent implements OnInit {
 
   ngOnInit(): void {
     this.getDocumentByNurseId();
+    this.getDocumentByNurseIdArchivessss()
   }
 
   document:any[]=[];
+  documentss:any[]=[];
   getDocumentByNurseId(){
     this.api.getDocumentByNurseId().subscribe((res:any)=>{
       console.log(res);
       this.document=res.data;
     })
   }
+
+  getDocumentByNurseIdArchivessss(){
+    this.api.getDocumentByNurseIdArchivess().subscribe((res:any)=>{
+      console.log(res);
+      this.documentss=res.data;
+    })
+  }
+
+  
 
     imgs!: File;
     imagesBox = '../../../../../../assets/img/product/product1.jpg'

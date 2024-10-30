@@ -65,8 +65,8 @@
                         </div>
                     </td>
                  
-                  <td style="color: green;">{{clientdocument.created_at}}</td>
-                  <td class="expires-date" style="color: red;">{{clientdocument.expiryDate}}</td>
+                  <td style="color: green;">{{clientdocument.created_at  | date:'dd-MM-yyyy'}}</td>
+                  <td class="expires-date" style="color: red;">{{clientdocument.expiryDate  | date:'dd-MM-yyyy'}}</td>
                   <td>
                     <i class="fa-sharp fa-solid fa-download p-3" style="color: #438EB9;font-size: 20px;"></i>
                     <i class="fa-sharp fa-solid fa-square-pen p-3" style="color: rgb(82, 194, 82);font-size: 20px;"></i>
@@ -108,8 +108,8 @@
                     </div>
                 </td>
              
-              <td style="color: green;">{{a.created_at}}</td>
-              <td class="expires-date" style="color: red;">{{a.expiryDate}}</td>
+              <td style="color: green;">{{a.created_at  | date:'dd-MM-yyyy'}}</td>
+              <td class="expires-date" style="color: red;">{{a.expiryDate  | date:'dd-MM-yyyy'}}</td>
                   <td>
                     <i class="fa-sharp fa-solid fa-download p-3" style="color: #438EB9;font-size: 20px;"></i>
                     <i class="fa-sharp fa-solid fa-square-pen p-3" style="color: rgb(82, 194, 82);font-size: 20px;"></i>

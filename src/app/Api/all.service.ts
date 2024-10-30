@@ -382,6 +382,13 @@ public leadData: any;
     return this.get(`${superAdminEndPoints.getDocumentByNurseId}${nurseId}`);
   }
 
+
+  getDocumentByNurseIdArchivess() {
+    const nurseId = localStorage.getItem('caregiverid');
+    return this.get(`${superAdminEndPoints.getDocumentByNurseIdArchive}${nurseId}`);
+  }
+  
+
   getNurseDoc(id:any){
     return this.get(superAdminEndPoints.getDocumentByNurseId + id)
   }

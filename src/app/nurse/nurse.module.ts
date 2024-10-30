@@ -14,6 +14,7 @@ import { ViewReportComponent } from './pages/view-report/view-report.component';
 import { AddReportComponent } from './shared/add-report/add-report.component';
 import { DocumentComponent } from './document/document.component';
 import { LeadsComponent } from './pages/leads/leads.component';
+import { NurseVerifyDocumentComponent } from './pages/nurse-verify-document/nurse-verify-document.component';
 
 
 @NgModule({
@@ -28,7 +29,8 @@ import { LeadsComponent } from './pages/leads/leads.component';
     ViewReportComponent,
     AddReportComponent,
     DocumentComponent,
-    LeadsComponent
+    LeadsComponent,
+    NurseVerifyDocumentComponent
   ],
   imports: [
     CommonModule,
