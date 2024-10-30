@@ -47,7 +47,7 @@ export class LandingpageComponent implements OnInit {
       note  :['',Validators.required],
     });
 
-    this.getPlans();
+    // this.getPlans();
   }
 
   onServiceTypeChange() {

@@ -11,9 +11,9 @@ export class NurseComponent {
   constructor(
     private route :Router
   ){
-    this.caregivername=localStorage.getItem('caregiver_name')
+    this.caregiverNames=localStorage.getItem('caregiverName')
   }
-  caregivername:any;
+  caregiverNames:any;
 
 
 
@@ -36,7 +36,7 @@ export class NurseComponent {
 
   logouts() {
     localStorage.removeItem('caregiver_token')
-    localStorage.removeItem('caregiver_name')
+    localStorage.removeItem('caregiverName')
     localStorage.removeItem('id')
     localStorage.removeItem('caregiverid')
     this.route.navigateByUrl("/", { replaceUrl: true })
