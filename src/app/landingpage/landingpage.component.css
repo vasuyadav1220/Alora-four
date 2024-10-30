@@ -1,0 +1,67 @@
+.btn_uniqe{
+    background-color: #2176CB; color: white; font-weight: bold; font-size: 1.2rem;
+    padding: 0.5rem; border-radius: 0.5rem; text-decoration: none;
+   }
+   
+    .btn_uniqe:hover {
+      background-color: #F79707;
+     color: white;
+    }
+    .card_uniqe:hover{
+        background-color: #cfd6e9;
+   
+    }
+    a{
+        text-decoration: none;
+    }
+    
+    .p_uniqe{
+        color: rgb(92, 92, 92);
+        font-size: 1.1rem;  
+    }
+    @media screen and (max-width: 480px) {
+   .open{
+    margin: 0px !important;
+    text-align: center;
+   }
+   }
+   .learn-more {
+            color: #ff6600;
+            font-size: 14px;
+            font-weight: bold;
+            text-decoration: none;
+        }
+        .learn-more:hover {
+            text-decoration: underline;
+        }
+
+
+          /* Custom styles for list items */
+          .list-unstyled {
+            padding-left: 0; 
+        }
+        .list-unstyled li {
+            list-style-type: none; 
+            padding-left: 0; 
+            margin-left: 20px; 
+            
+        }
+
+.card.selected {
+  border: 2px solid #007bff;
+  /* or whatever styling you prefer for selected cards */
+}
+
+.selected-card {
+    border: 2px solid #003366 !important;
+    transform: scale(1.02);
+    transition: all 0.3s ease;
+}
+
+.btn.selected {
+    background-color: #28a745 !important;
+}
+
+.card {
+    transition: all 0.3s ease;
+}

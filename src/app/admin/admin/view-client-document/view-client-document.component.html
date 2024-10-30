@@ -1,0 +1,148 @@
+<div class="col-md-12 col-sm-12  mt-3" style="width: 100%;">
+    <div class="page-title">Client Document<span class="sub-title ms-2"> <i
+                class="fa-duotone fa-solid fa-arrows-turn-right"></i>Client Document Search</span></div>
+    <div class="col-lg-12 col-md-12 d-flex  gap-2  mt-2 "
+        style="background-color: #F7F7F7; white-space: wrap ; height: 70px;">
+        <h5 class="fs-4 mt-3 text-center p-2" style="color: #777 ;"> Client Document </h5>
+
+    </div>
+    <div class="row">
+        <div class="col-md-6 col-12 mt-3">
+            <div class="form-inline mb-3" style="display: flex;">
+                <label for="search" class="me-2 fw-bold ">Search:</label>
+                <input type="text" class="form-control mr-2  form-control-sm" id="search" placeholder="Search">
+                <button type="button" class="btn btn-filter"><i class="fas fa-filter"></i></button>
+            </div>
+        </div>
+        <div class="col-md-6 col-12">
+            <div class="form-inline mb-3 float-md-end mt-2" style="display: flex; ">
+                <label for="entries" class="me-2 fw-bold">Show</label>
+                <select id="entries" class="form-control mr-2" style="width: auto; border-color: #FFA500;">
+                    <option value="10">10</option>
+                    <option value="25" selected>25</option>
+                    <option value="50">50</option>
+                    <option value="100">100</option>
+                </select>
+                <label for="entries fw-bold">entries</label>
+            </div>
+        </div>
+    </div>
+    <div class="" style="overflow-x: scroll;">
+        <table class="table table-bordered table-hover table-striped ">
+            <thead class="" style="font-size: 13px; text-wrap: nowrap; ">
+                <tr>
+                    <th style="color: #4F99C6;">ID</th>
+                    <th style="color: #4F99C6;">MEDICAID ID</th>
+                    <th style="color: #4F99C6;">NAME</th>
+                    <th style="color: #4F99C6;">DOCUMENT VIEW</th>
+
+                </tr>
+            </thead>
+            <tbody style="text-wrap: nowrap;" class="">
+                <tr style="background-color: #f9f9f9;" *ngFor="let a of patientsCount;   let i = index">
+                    <td>{{ i + 1 }}</td>
+                    <td> {{a.medicaidId}} </td>
+                    <td><a style="text-decoration: none;">{{a.name}}</a></td>
+                    <td>
+                         <button class="btn btn-primary     m-2" data-bs-toggle="modal" data-bs-target="#exampleModal"
+                            (click)="docById(a.id)">Active Document</button>
+
+
+                            <button class="btn btn-primary m-2" data-bs-toggle="modal" data-bs-target="#exampleModal1"
+                            (click)="docByIdss(a.id)">Expiry Document</button>
+
+                        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                            aria-hidden="true">
+                            <div class="modal-dialog modal-xl">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h1 class="modal-title fs-5" id="exampleModalLabel">Client Active Documents</h1>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                            aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <div class="table-responsive">
+                                            <table class="table table-hover">
+                                                <thead>
+                                                    <tr>
+                                                        <th>Document</th>
+                                                        <th>Expiry Date</th>
+                                                        <th>Created At</th>
+                                                    </tr>
+                                                    <tr *ngFor="let item of docByIdData">
+                                                        <td> <img [src]="item.document"
+                                                                style="width: 100px; height: 100px;" alt=""> </td>
+                                                        <td>{{item.expiryDate | date:'dd-MM-yyyy'}}</td>
+                                                        <td>{{item.created_at | date:'dd-MM-yyyy'}}</td>
+                                                    </tr>
+                                                </thead>
+                                            </table>
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary"
+                                            data-bs-dismiss="modal">Close</button>
+                                        <button type="button" class="btn btn-primary">Save changes</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="modal fade" id="exampleModal1" tabindex="-1" aria-labelledby="exampleModalLabel1"
+                        aria-hidden="true">
+                        <div class="modal-dialog modal-xl">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h1 class="modal-title fs-5" id="exampleModalLabel">Client Expired Documents</h1>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                        aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="table-responsive">
+                                        <table class="table table-hover">
+                                            <thead>
+                                                <tr>
+                                                    <th>Document</th>
+                                                    <th>Expiry Date</th>
+                                                    <th>Created At</th>
+                                                </tr>
+                                                <tr *ngFor="let item of docByIdData">
+                                                    <td> <img [src]="item.document"
+                                                            style="width: 100px; height: 100px;" alt=""> </td>
+                                                    <td>{{item.expiryDate | date:'dd-MM-yyyy'}}</td>
+                                                    <td>{{item.created_at | date:'dd-MM-yyyy'}}</td>
+                                                </tr>
+                                            </thead>
+                                        </table>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary"
+                                        data-bs-dismiss="modal">Close</button>
+                                    <button type="button" class="btn btn-primary">Save changes</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    </td>
+
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="row mt-3">
+        <div class="col-sm-12 col-md-6 d-flex justify-content-start mt-2">
+            <p>Showing 0 to 0 of 0 entries</p>
+        </div>
+        <div class="col-sm-12 col-md-6 d-flex justify-content-end">
+            <ul class="pagination gap-2  ">
+                <li class="page-item"><a class="page-link" href="#">First</a></li>
+                <li class="page-item"><a class="page-link" href="#">Previous</a></li>
+                <li class="page-item"><a class="page-link" href="#">Next</a></li>
+                <li class="page-item"><a class="page-link" href="#">Last</a></li>
+            </ul>
+        </div>
+    </div>
+</div>

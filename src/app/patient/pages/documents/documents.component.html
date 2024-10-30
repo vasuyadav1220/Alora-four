@@ -1,0 +1,129 @@
+<div class="container mt-5">
+  <div class="col-lg-12 col-md-12 text-white gap-2 mt-2" style="background-color: #438EB9; height: 40px;">
+    <h5 class="mt-3 p-2">Add Client Document</h5>
+  </div>
+  <div class="card mt-4">
+    <div class="card-body">
+      <form [formGroup]="addDocumentForm" class="row g-3">
+        <div class="col-md-6">
+          <label class="form-label fw-bold" style="color: rgb(97, 95, 95);">Document</label>
+          <input type="file" class="form-control" formControlName="document" id="fileInput" (change)="Onupload($event)">
+        </div>
+        <div class="col-md-6">
+          <label class="form-label fw-bold" style="color: rgb(97, 95, 95);">Expiry Date</label>
+          <input type="date" class="form-control" formControlName="expiryDate">
+        </div>
+        <div class="col-12 d-flex justify-content-end">
+          <button type="submit" class="btn btn-primary" (click)="addDocument()">Add Document</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+
+<div class="col-lg-12 col-md-12 text-white gap-2 mt-4"
+  style="white-space: wrap ;background-color: #438EB9; height: 40px; ">
+  <h5 class="mt-3  p-2">List Client Documents</h5>
+</div>
+<div class="card p-3 shadow">
+  <nav>
+    <div class="nav nav-tabs mb-3" id="nav-tab" role="tablist">
+      <button class="nav-link active" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-home" type="button"
+        role="tab" aria-controls="nav-home" aria-selected="true"> Active Document</button>
+      <button class="nav-link" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-profile" type="button"
+        role="tab" aria-controls="nav-profile" aria-selected="false">Archive Document</button>
+    </div>
+  </nav>
+  <div class="tab-content p-3 border bg-light" id="nav-tabContent">
+    <div class="tab-pane fade active show" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+      <div class="modal-dialog modal-xl">
+        <div class="modal-content">
+
+          <div class="modal-body">
+
+            <table class="table table-striped custom-table table-bordered">
+              <thead>
+                <tr>
+                  <th>File</th>
+                  <th> Active Date</th>
+                  <th>Expires date</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let clientdocument of clientbyidata;">
+                 
+
+                     <td>
+                        <div class="mt-2">
+                            <img 
+                                style="width: 50px; border-radius: 30px; text-align: center;" 
+                                src="{{clientdocument.document}}" 
+                                alt="img"
+                            />
+                        </div>
+                    </td>
+                 
+                  <td style="color: green;">{{clientdocument.created_at}}</td>
+                  <td class="expires-date" style="color: red;">{{clientdocument.expiryDate}}</td>
+                  <td>
+                    <i class="fa-sharp fa-solid fa-download p-3" style="color: #438EB9;font-size: 20px;"></i>
+                    <i class="fa-sharp fa-solid fa-square-pen p-3" style="color: rgb(82, 194, 82);font-size: 20px;"></i>
+                    <i class="fa-solid fa-trash p-3" style="color: rgb(175, 40, 40); font-size: 20px;"></i>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          
+        </div>
+      </div>
+    </div>
+    <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
+      <div class="modal-dialog modal-xl">
+        <div class="modal-content">
+
+          <div class="modal-body">
+
+            <table class="table table-striped custom-table table-bordered">
+              <thead>
+                <tr>
+                  <th>File</th>
+                  <th>Date</th>
+                  <th>Expires</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let a of clientbyidatass;">
+
+                  <td>
+                    <div class="mt-2">
+                        <img 
+                            style="width: 50px; border-radius: 30px; text-align: center;" 
+                            src="{{a.document}}" 
+                            alt="img"
+                        />
+                    </div>
+                </td>
+             
+              <td style="color: green;">{{a.created_at}}</td>
+              <td class="expires-date" style="color: red;">{{a.expiryDate}}</td>
+                  <td>
+                    <i class="fa-sharp fa-solid fa-download p-3" style="color: #438EB9;font-size: 20px;"></i>
+                    <i class="fa-sharp fa-solid fa-square-pen p-3" style="color: rgb(82, 194, 82);font-size: 20px;"></i>
+                    <i class="fa-solid fa-trash p-3" style="color: rgb(175, 40, 40); font-size: 20px;"></i>
+                  </td>
+                </tr>
+             
+              </tbody>
+            </table>
+          </div>
+       
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>

@@ -1,0 +1,271 @@
+<nav class="navbar navbar-expand-sm p-0 fixed-top" style="background-color: #e7eaea;">
+    <div class="container-fluid">
+        <div class="unique-logo-section">
+            <button class="navbar-toggler mt-3 border-0 text-light" style="background-color: #5090bf;" type="button"
+                onclick="toggleSidebar()">
+                <i class="fa-sharp fa-light fa-bars"></i>
+            </button>
+            <a> <img src="../../assets/ApexCare360-01.svg" style="width: 100px;"
+                    class="card-img-top" alt="..."></a>
+
+        </div>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#collapsibleNavbar">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse " id="collapsibleNavbar">
+            <ul class="navbar-nav navbarul">
+
+                <li class="nav-item" style="border-right: 1px solid gray;">
+                    <a class="nav-link">Hii, {{superadminname}}
+                    </a>
+                </li>
+                <li class="nav-item notification-icon" style="border-right: 1px solid gray;">
+                    <a class="nav-link" (click)="toggleNotificationDropdown()">
+                        <i class="fa fa-bell fs-5"></i> 
+                        <span *ngIf="newPatientsCount > 0" class="badge">{{ newPatientsCount }}</span>
+                    </a>
+                </li>
+                <div *ngIf="isNotificationDropdownVisible" class="notification-dropdown">
+                    <div class="dropdown-header">
+                      <h5 style="color: #5090bf;">New Notifications <button style="margin-left:113px; color: #5090bf; border: none;" (click)="closeNotificationDropdown()">
+                        <i class="fa fa-times"></i></button></h5>
+                    </div>
+                    <ul *ngIf="latestPatients.length > 0">
+                      <li *ngFor="let patient of latestPatients">
+                        Client Name={{ patient.name }} - {{ patient.id }} 
+                        Create Date={{patient.leadCreatedDate}}       
+                      </li>
+                    </ul>
+                    <p *ngIf="latestPatients.length === 0">No new notifications</p>
+                  </div>
+                <li class="nav-item">
+                    <a class="nav-link" style="cursor: pointer;" (click)="logouts()">LogOut</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<div class="row">
+    <div class="unique-sidebar col-lg-3  p-3 mt-5" id="sidebar">
+        <div class="unique-search-section">
+        </div>
+        <ul class="nav flex-column unique-nav mt-2">
+            <li class="nav-item">
+                <a class="nav-link unique-nav-link">
+                    <i class="fa-sharp fa-solid fa-magnifying-glass unique-icon"></i>
+                    <input type="text" class="form-control unique-search-input unique-nav-text"
+                        placeholder="Menu Search...">
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link unique-nav-link" (click)="toggleSidebar2()">
+                    <i class="fas fa-arrow-left unique-icon"></i>
+                    <span class="unique-nav-text">Collapse</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a routerLink="/Admin/admin_dashboard" class="nav-link unique-nav-link">
+                    <i class="fas fa-tachometer-alt unique-icon"></i>
+                    <span class="unique-nav-text">Dashboard</span>
+                </a>
+            </li>
+
+
+            <li class="nav-item">
+
+                <a routerLink="/Admin/view_facility" class="nav-link unique-nav-link">
+                    <!-- <i class="fa-sharp fa-regular fa-bed-pulse unique-icon"></i> -->
+                    <i class="fa-solid fa-users unique-icon"></i>
+                    <span class="unique-nav-text">Facility items</span>
+                </a>
+            </li>
+
+            <li class="nav-item">
+
+                <a routerLink="/Admin/view_category" class="nav-link unique-nav-link">
+                    <!-- <i class="fa-sharp fa-regular fa-bed-pulse unique-icon"></i> -->
+                    <i class="fa-solid fa-users unique-icon"></i>
+                    <span class="unique-nav-text">Facility Category</span>
+                </a>
+            </li>
+
+
+            <li class="nav-item">
+
+                <a routerLink="/Admin/view_plans" class="nav-link unique-nav-link">
+                    <!-- <i class="fa-sharp fa-regular fa-bed-pulse unique-icon"></i> -->
+                    <i class="fa-solid fa-users unique-icon"></i>
+                    <span class="unique-nav-text">Plan List</span>
+                </a>
+            </li> 
+            
+            <li class="nav-item"> 
+                <a routerLink="/Admin/Leadlist" class="nav-link unique-nav-link">
+                    <!-- <i class="fa-sharp fa-regular fa-bed-pulse unique-icon"></i> -->
+                    <i class="fa-solid fa-users unique-icon"></i>
+                    <span class="unique-nav-text">Lead List</span>
+                </a>
+            </li>
+
+
+
+            <li class="nav-item">
+                <a routerLink="/Admin/Client_view" class="nav-link unique-nav-link">
+                    <i class="fa-solid fa-user-plus unique-icon"></i>
+                    <span class="unique-nav-text">Client List</span>
+                </a>
+            </li>
+
+            <li class="nav-item">
+                <a routerLink="/Admin/Caregiver_view" class="nav-link unique-nav-link">
+                    <i class="fa-solid fa-user-nurse unique-icon"></i>
+                    <span class="unique-nav-text">Care Giver List</span>
+                </a>
+            </li>
+
+            <li class="nav-item">
+                <a routerLink="/Admin/nurse_documents" class="nav-link unique-nav-link">
+                    <i class="fa-solid fa-user-nurse unique-icon"></i>
+                    <span class="unique-nav-text">Care Giver Documents</span>
+                </a>
+            </li>
+
+
+            <li class="nav-item">
+                <a routerLink="/Admin/view_client_document" class="nav-link unique-nav-link">
+                    <i class="fa-solid fa-user-nurse unique-icon"></i>
+                    Client Documwent
+                </a>
+            </li>
+
+            <!-- 
+            <li class="nav-item">
+                <a class="nav-link unique-nav-link " data-bs-toggle="collapse" href="#adminMenu9" role="button"
+                    aria-expanded="false" aria-controls="adminMenu9">
+                    <i class="fa-regular fa-users unique-icon"></i>
+                    <span class="unique-nav-text">Client / Employee</span>
+                    <i class="fas fa-chevron-down unique-chevron"></i>
+                </a>
+                <div class="collapse unique-submenu" id="adminMenu9" data-bs-parent="#helpAccordion">
+                    <ul class="flex-column nav">
+                        <li class="nav-item">
+                            <a routerLink="/Admin/Client_view" class="nav-link unique-nav-link">
+                              Client List
+                            </a>
+                        </li>
+                       
+                    </ul>
+                </div>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link unique-nav-link " data-bs-toggle="collapse" href="#adminMenu10" role="button"
+                    aria-expanded="false" aria-controls="adminMenu10">
+                    <i class="fa-regular fa-users unique-icon"></i>
+                    <span class="unique-nav-text">Care Giver</span>
+                    <i class="fas fa-chevron-down unique-chevron"></i>
+                </a>
+                <div class="collapse unique-submenu" id="adminMenu10" data-bs-parent="#helpAccordion">
+                    <ul class="flex-column nav">
+                        <li class="nav-item">
+                            <a routerLink="/Admin/Caregiver_view" class="nav-link unique-nav-link">
+                                Care Giver List
+                            </a>
+                        </li>
+                       
+                    </ul>
+                </div>
+            </li> -->
+
+
+            <!-- 
+            <div class="accordion" id="adminAccor">
+                <li class="nav-item">
+                    <a class="nav-link unique-nav-link" data-bs-toggle="collapse" href="#AR" role="button"
+                        aria-expanded="false" aria-controls="AR">
+                        <i class="fa-solid fa-circle-question unique-icon"></i>
+                        <span class="unique-nav-text">AR</span>
+                        <i class="fas fa-chevron-down unique-chevron"></i>
+                    </a>
+                    <div class="collapse unique-submenu" id="AR" data-bs-parent="#adminAccor">
+                        <ul class="flex-column nav">
+                            <li class="nav-item">
+                                <a routerLink="/Admin/transaction_log" class="nav-link unique-nav-link">
+                                    Transaction Log
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a routerLink="/Admin/post_payment" class="nav-link unique-nav-link">
+                                    Post Payment
+                                </a>
+                            </li>
+
+                        </ul>
+                    </div>
+                </li>
+            </div> -->
+
+
+            <!-- <li class="nav-item">
+                <a routerLink="/Admin/clock_status" class="nav-link unique-nav-link">
+                    <i class="fas fa-solid fa-clock-rotate-left unique-icon"></i>
+                    <span class="unique-nav-text">Clock Status</span>
+                </a>
+            </li> -->
+
+
+
+            <div class="accordion" id="adminAccor">
+                <li class="nav-item">
+                    <a class="nav-link unique-nav-link" data-bs-toggle="collapse" href="#adminMenu" role="button"
+                        aria-expanded="false" aria-controls="adminMenu">
+                        <i class="fa-solid fa-circle-question unique-icon"></i>
+                        <span class="unique-nav-text">Admin</span>
+                        <i class="fas fa-chevron-down unique-chevron"></i>
+                    </a>
+                    <div class="collapse unique-submenu" id="adminMenu" data-bs-parent="#adminAccor">
+                        <ul class="flex-column nav">
+                            <li class="nav-item">
+                                <a routerLink="/Admin/customize" class="nav-link unique-nav-link">
+                                    Customize
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a routerLink="/Admin/user_security" class="nav-link unique-nav-link">
+                                    User / security manager
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a routerLink="/Admin/feature_activation" class="nav-link unique-nav-link">
+                                    Features Activation
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a routerLink="/Admin/account_invoices" class="nav-link unique-nav-link">
+                                    Account & Invoices
+                                </a>
+                            </li>
+
+                       
+
+                            
+                        </ul>
+                    </div>
+                </li>
+            </div>
+            <li class="nav-item">
+                <a (click)="logouts()" class="nav-link unique-nav-link">
+                    <i class="fas fa-right-from-bracket unique-icon"></i>
+                    <span class="unique-nav-text">LogOut</span>
+                </a>
+            </li>
+        </ul>
+    </div>
+    <div class="col-lg-8 col-md-8 mt-5">
+        <router-outlet></router-outlet>
+    </div>
+</div>
+<div class="d-flex justify-content-between pt-3 mb-2 pb-2" style="border-top: 3px double #E5E5E5;">
+    <div>© 2024 All Family Homecare Systems, LLC.</div>
+    <div>Version: 8.57.4.14</div>
+</div>

@@ -1,0 +1,87 @@
+<div class="container mt-5">
+  <div class="row">
+    <div class="col-md-10 offset-md-1"
+      style="box-shadow: rgba(67, 71, 85, 0.27) 0px 0px 0.25em, rgba(90, 125, 188, 0.05) 0px 0.25em 1em;">
+      <div class="">
+        <div class="card-header" style="font-weight: bold; font-size: 20px">
+          Personal Information
+        </div>
+        <form>
+          <div class="card-body">
+            <div class="row">
+              <div class="col-md-6">
+                <div class="col-sm-12 col-md-3" style="line-height: 2rem; height: 190px;">
+                  <label class="ms-4" for="specificSizeSelect"> IMAGE:</label>
+                  <div class="image-upload-wrap mb-3 ms-4" style="width: 90%;">
+                    <div class="row">
+                      <div class="col-md-6 text-center">
+                        <img 
+                          style=" border-radius: 70px; height: 120px; width: 150px; margin-right: 10px; padding-bottom: 10px;">
+                        <input type="file" class="form-control" style="width: 100px;"
+                          formControlName="profile">
+                      </div>
+                    </div>
+                    <div class="drag-text">
+                      <h3 style="opacity: 0;">Drag and drop a file or select</h3>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6" style="margin-top: 40px;">
+                <div class="form-group row">
+                  <div class="col-md-6">
+                    <label for="caregiverName">Caregiver Name</label>
+                  </div>
+                  <div class="col-md-6">
+                    <input type="text" class="form-control form-control-sm" id="caregiverName" placeholder="Caregiver Name"
+                      formControlName="caregiverName" style="width: 100%" />
+                  </div>
+                </div>
+                <div class="form-group row mt-2">
+                  <div class="col-md-6">
+                    <label for="email">Email</label>
+                  </div>
+                  <div class="col-md-6">
+                    <input type="email" class="form-control form-control-sm" id="email" placeholder="Email"
+                      formControlName="email" />
+                  </div>
+                </div>
+              </div>
+            </div>
+            <hr />
+            <div class="card-body">
+              <div class="form-group row">
+                <div class="col-md-6">
+                  <label for="address">Address</label>
+                </div>
+                <div class="col-md-6">
+                  <input type="text" class="form-control form-control-sm" id="address" placeholder="Address"
+                    formControlName="address" />
+                </div>
+              </div>
+              <div class="form-group row mt-2">
+                <div class="col-md-6">
+                  <label for="caregiverNote">Caregiver Note</label>
+                </div>
+                <div class="col-md-6">
+                  <textarea class="form-control form-control-sm" id="caregiverNote" placeholder="Caregiver Note"
+                    formControlName="caregiverNote" rows="3"></textarea>
+                </div>
+              </div>
+              <div class="form-group row mt-2">
+                <div class="col-md-6">
+                  <label for="password">Password</label>
+                </div>
+                <div class="col-md-6">
+                  <input type="password" class="form-control form-control-sm" id="password" placeholder="Password"
+                    formControlName="password" />
+                </div>
+              </div>
+              <button class="btn btn-success mt-2" type="submit">Save</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
