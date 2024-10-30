@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AllService } from 'src/app/Api/all.service';
 import { SweetsalertsServicesService } from 'src/app/sweetsalerts-services.service';
@@ -13,9 +13,9 @@ export class LeadlistComponent {
   
   updateForm!:FormGroup;  
   constructor(
+    private fb: FormBuilder,
     private api:AllService,
     private route:Router,
-    private fb:FormBuilder,
   private swet :SweetsalertsServicesService
   ){
   }
@@ -27,6 +27,14 @@ export class LeadlistComponent {
   userId:any
   dataSend: any
 
+  leadform!: FormGroup;
+showClientCards = false;
+// planDetails: PlanDetail[] = [  ];
+selectedCardId: number | null = null;
+
+
+
+
 
 
   ngOnInit(): void {
@@ -34,6 +42,14 @@ export class LeadlistComponent {
     this.userId = userIdString ? parseInt(userIdString, 10) : null;
     console.log( 'admin id', this.userId);
     this.getPatients();
+     this.leadform = this.fb.group({
+    name:['',Validators.required]  ,      
+    email :['',Validators.required]   ,   
+    servicetype :['',Validators.required],
+    note  :['',Validators.required],
+  });
+
+  // this.getPlans();
   }
 
 
@@ -117,6 +133,45 @@ toggleVerified(data: any) {
       }
     }
   });
+}
+
+
+
+
+
+// onServiceTypeChange() {
+//   this.showClientCards = this.leadform.get('servicetype')?.value === 'Client';
+// }
+
+// getPlans(){
+//   this.service.getPlans().subscribe((res:any)=>{
+//     console.log(res)
+//     this.planDetails = res.data;
+//   })
+// }
+
+// selectCard(cardId: number) {
+//   this.selectedCardId = cardId;
+// }
+
+onSubmit(): void {
+  if (this.leadform.valid) {
+    // Create form data with selected card
+    // const formData = {
+    //   ...this.leadform.value,
+    //   planId: this.selectedCardId
+    // };
+
+    // console.log(formData);
+    this.api.addlead(this.leadform.value).subscribe((res: any) => {
+      this.swet.SucessToast(`Generate Lead Successfully`);
+      console.log('form added', res);
+
+      this.leadform.reset();
+      this.selectedCardId = null;
+      this.showClientCards = false;
+    });
+  }
 }
 
 

@@ -75,7 +75,7 @@
       style="padding: 50px 0; background-color: #003366; color: white;">
       <div class="container">
          <div class="row">
-            <div class="col-md-6 mb-3">
+            <div class="col-md-12 mb-3">
                <h2 style="font-weight: bold;">Welcome to APEXCARE360</h2>
                <p class="text-start">At APEXCARE360, we provide an intuitive, office-focused software solution designed
                   to streamline your home care operations. Our platform simplifies management of Leads, Clients, and
@@ -86,7 +86,7 @@
                   src="https://img.freepik.com/premium-photo/retirement-healthcare-old-woman-with-nurse-bedroom-support-rehabilitation-disability-help-medical-consulting-with-caregiver-elderly-patient-nursing-home-therapy_590464-106782.jpg"
                   alt="ApexCare360Screen" class=" w-50" style="width: 60%; border-radius: 10px;  ">
             </div>
-            <div class="col-md-6">
+           <!--  <div class="col-md-6">
 
                <div class="form-section"
                   style="    background-color: #fff; border-radius: 8px;  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);  padding: 30px;">
@@ -94,39 +94,9 @@
                   <p>Sign up today & get ApexCare360at 50% Off for the rest of 2024!</p>
 
 
-                  <div class="row">
-                     <form [formGroup]="leadform" (ngSubmit)="onSubmit()">
+                 
 
-                        <div class="col-md-12 mb-3">
-                           <input type="text" class="form-control" placeholder="Name" formControlName="name">
-                        </div>
-
-                        <div class="col-md-12 mb-3">
-                           <input type="text" class="form-control" placeholder="Email" formControlName="email">
-                        </div>
-
-                        <div class="col-md-12  mb-3">
-                           <select class="form-select" formControlName="servicetype" (change)="onServiceTypeChange()">
-                              <option value="">Service Plans</option>
-                              <!-- <option value="Caregiver">Caregiver</option> -->
-                              <option value="Client">Client</option>
-                           </select>
-                        </div>
-
-                        <div class="col-sm-12 mb-3">
-                           <input type="text" class="form-control" placeholder="Note" formControlName="note">
-                        </div>
-
-                        <div class="col-md-12 text-start ">
-                           <button class="btn" type="submit" style="background-color: #003366; color: white;"
-                              >Submit</button>
-                        </div>
-
-                     </form>
-                  </div>
-
-                  <!-- Add this new section after the existing form -->
-                  <!-- <div *ngIf="showClientCards" class="row mt-3">
+                  <div *ngIf="showClientCards" class="row mt-3">
                      <div class="col-md-4 mb-3" *ngFor="let plan of planDetails">
                         <div class="card h-100">
                            <div class="card-body">
@@ -159,10 +129,10 @@
                            </div>
                         </div>
                      </div>
-                  </div> -->
+                  </div> 
 
                </div>
-            </div>
+            </div>-->
          </div>
       </div>
    </div>
@@ -172,13 +142,12 @@
 
 <!-- planssss ankit -->
 
-<div class="container mt-5"  *ngIf="showClientCards" >
+<!-- <div class="container mt-5"  *ngIf="showClientCards" >
    <div class="row justify-content-center">
        <div class="col-md-4"  *ngFor="let plan of planDetails">
            <div class="card text-center shadow border-0 rounded-4 mt-2">
-               <!-- Image at the top -->
                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQuaLIv7_L3eKnRwKSl-bj7nijJGlHIQUYRBA&s" height="100px" class="card-img-top" style="object-fit: contain;" alt="Plan Image">
-               <div class="card-body text-center"> <!-- Centering all card content -->
+               <div class="card-body text-center"> 
                    <span class="badge badge-warning text-white mb-2">
                      
                    </span>
@@ -188,17 +157,14 @@
                    <h6 class="card-text">Features</h6>
                    <ul class="list-unstyled mt-2 mb-2">
                        <li>ADLS:-Bathing,Dressing,Eating <i class="fas fa-check-circle text-success"></i></li>
-                       <!-- <li>Donec enim nulla malesuada <i class="fa-solid fa-xmark text-danger"></i></li> -->
                    </ul>
        
                    <h6 class="card-text">Facility</h6>
                    <ul class="list-unstyled mt-1 mb-4">
                        <li>Demo facility</li>
-                       <!-- <li>Donec enim nulla malesuada</li> -->
                    </ul>
        
-                   <!-- <a  [class.selected]="selectedCardId === plan.id" 
-                   (click)="selectCard(plan.id)" style="background-color: #003366; color: white;" class="btn btn-info rounded-pill">Select</a> -->
+                  
                    <button [class.selected]="selectedCardId === plan.id"
                    (click)="selectCard(plan.id)" 
                    style="background-color: #003366; color: white;" 
@@ -209,7 +175,7 @@
            </div>
        </div>
    </div>
-</div>
+</div> -->
 
 
    <!-- section-2 start -->
