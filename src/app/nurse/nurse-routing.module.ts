@@ -10,6 +10,7 @@ import { NurseAloteViewComponent } from './pages/nurse-alote-view/nurse-alote-vi
 import { ViewReportComponent } from './pages/view-report/view-report.component';
 import { AddReportComponent } from './shared/add-report/add-report.component';
 import { DocumentComponent } from './document/document.component';
+import { LeadsComponent } from './pages/leads/leads.component';
 
 const routes: Routes = [
   { path: '', component: NurseComponent,
@@ -54,6 +55,10 @@ const routes: Routes = [
       {
         path:'add_document',
         component:DocumentComponent
+      },
+      {
+        path:'leads',
+        component:LeadsComponent
       }
     ]
    }
