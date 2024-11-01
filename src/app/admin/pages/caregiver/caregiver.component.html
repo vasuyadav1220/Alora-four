@@ -45,8 +45,9 @@
             <tbody style="text-wrap: nowrap;" class="">
                 <tr style="background-color: #f9f9f9;" *ngFor="let caregiverdata of patientsCount; let i= index">
                     <td class="text-center">{{i+1 }}</td>
+                    <td><a (click)="viewcaregiverProfile(caregiverdata.id)" style="text-decoration: none;">{{caregiverdata.caregiverName}}</a></td>
 
-                    <td class="text-center">{{caregiverdata.caregiverName }}</td>
+                    <!-- <td class="text-center" viewcaregiverProfile >{{caregiverdata.caregiverName }}</td> -->
                     <td class="text-center">{{caregiverdata.email }}</td>
                     <td class="text-center">{{caregiverdata.address}}</td>
                     <td class="text-center">{{caregiverdata.caregiverNote }}</td>

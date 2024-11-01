@@ -67,6 +67,7 @@ import { AddCategoryComponent } from './admin/add-category/add-category.componen
 import { ViewCategoryComponent } from './admin/view-category/view-category.component';
 import { ViewClientDocumentComponent } from './admin/view-client-document/view-client-document.component';
 import { DocumentsComponent } from './documents/documents.component';
+import { CaregiverprofilenewComponent } from './pages/caregiverprofilenew/caregiverprofilenew.component';
 
 
 @NgModule({
@@ -134,7 +135,8 @@ import { DocumentsComponent } from './documents/documents.component';
     AddCategoryComponent,
     ViewCategoryComponent,
     ViewClientDocumentComponent,
-    DocumentsComponent
+    DocumentsComponent,
+    CaregiverprofilenewComponent
   ],
   imports: [
     CommonModule,

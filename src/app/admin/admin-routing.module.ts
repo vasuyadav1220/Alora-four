@@ -64,6 +64,7 @@ import { ViewCategoryComponent } from './admin/view-category/view-category.compo
 import { AddCategoryComponent } from './admin/add-category/add-category.component';
 import { ViewClientDocumentComponent } from './admin/view-client-document/view-client-document.component';
 import { DocumentsComponent } from './documents/documents.component';
+import { CaregiverprofilenewComponent } from './pages/caregiverprofilenew/caregiverprofilenew.component';
 
 
 const routes: Routes = [
@@ -327,6 +328,10 @@ const routes: Routes = [
       {
         path:'nurse_documents',
         component:DocumentsComponent
+      },
+      {
+        path:'caregiverprofilenew',
+        component:CaregiverprofilenewComponent
       }
     
     ]

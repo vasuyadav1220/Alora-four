@@ -93,6 +93,8 @@ toggleVerified(data: any) {
     }
   });
 }
+
+
 viewClientProfile(clientId: string) {
   this.route.navigate(['/Admin/Clientprofile_view', { id: clientId }]);
 }

@@ -15,6 +15,7 @@ import { AddReportComponent } from './shared/add-report/add-report.component';
 import { DocumentComponent } from './document/document.component';
 import { LeadsComponent } from './pages/leads/leads.component';
 import { NurseVerifyDocumentComponent } from './pages/nurse-verify-document/nurse-verify-document.component';
+import { CaregiverprofileComponent } from './pages/caregiverprofile/caregiverprofile.component';
 
 
 @NgModule({
@@ -30,7 +31,8 @@ import { NurseVerifyDocumentComponent } from './pages/nurse-verify-document/nurs
     AddReportComponent,
     DocumentComponent,
     LeadsComponent,
-    NurseVerifyDocumentComponent
+    NurseVerifyDocumentComponent,
+    CaregiverprofileComponent
   ],
   imports: [
     CommonModule,

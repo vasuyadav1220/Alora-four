@@ -39,6 +39,12 @@ export class CaregiverComponent  implements OnInit{
   }
 
 
+
+
+viewcaregiverProfile(clientId: string) {
+  this.route.navigate(['/Admin/caregiverprofilenew', { id: clientId }]);
+}
+
   uploadDocument(id:any){
     console.log(id);
     window.open(id)

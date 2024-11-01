@@ -276,6 +276,13 @@ public leadData: any;
     return this.get(superAdminEndPoints.leadupdate + id )
    }
 
+   caregivercreategetbyid(id:any){
+    const adminId = localStorage.getItem('id');
+    return this.get(superAdminEndPoints.caregivercreateids + id )
+   }
+
+   
+
 
 
    patientByID(id:any){
@@ -289,6 +296,15 @@ public leadData: any;
   
     return this.http.put(superAdminEndPoints.leadupdatedata +id , data, { headers });
   }
+
+  putcaregivercreateidsdata(id:any, data:any) {
+    const headers = new HttpHeaders({
+    });
+  
+    return this.http.put(superAdminEndPoints.caregivercreateidsdata +id , data, { headers });
+  }
+
+  
 
 
 
