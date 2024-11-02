@@ -100,7 +100,7 @@ leadeupdateapi(): void {
   }
 }
 
-
+  
 Onupload(event: any) {
   if (event.target.files.length > 0) {
     this.imgs = event.target.files[0];

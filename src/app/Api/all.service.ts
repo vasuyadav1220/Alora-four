@@ -408,6 +408,12 @@ public leadData: any;
   getNurseDoc(id:any){
     return this.get(superAdminEndPoints.getDocumentByNurseId + id)
   }
+
+  getclientdocumentbynurseids(id:any){
+    return this.get(superAdminEndPoints.getclientdocumentbynurseid + id)
+  }
+
+  
   getClientDoc(id:any){
     return this.get(superAdminEndPoints.getbyidclientDocumentactive + id)
   }
