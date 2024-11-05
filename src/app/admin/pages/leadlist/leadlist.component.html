@@ -107,6 +107,7 @@
           <th style="color: #4F99C6;">SERVICES TYPE</th>
           <th style="color: #4F99C6;">NOTE </th>
           <th style="color: #4F99C6;">STATUS</th>
+          <th style="color: #4F99C6;">ACTION</th>
 
         </tr>
       </thead>
@@ -120,7 +121,7 @@
 
              
                 <img 
-                    style="width: 50px; border-radius: 30px; text-align: center;" 
+                    style="width: 50px; border-radius: 30px; text-align: center;height: 50px;" 
                     src="{{a.attachDoc}}" 
                     alt="img"
                 />
@@ -143,6 +144,31 @@
                 <label>Disapproved</label>
               </div>
             </div>
+          </td>
+          <td>
+            <!-- Button trigger modal -->
+<button type="button" class="btn btn-danger" (click)="patientById(a.id)" data-bs-toggle="modal" data-bs-target="#deelteLead">
+  Delete
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="deelteLead" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Delete lead</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        Are you sure you want to delete {{ patientByIdData.name }}'s lead?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" (click)="itemDelete(patientByIdData)" >Delete</button>
+      </div>
+    </div>
+  </div>
+</div>
           </td>
      
 
