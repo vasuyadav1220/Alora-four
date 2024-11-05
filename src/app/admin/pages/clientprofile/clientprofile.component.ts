@@ -40,8 +40,6 @@ export class ClientprofileComponent implements OnInit {
       this.getPatientDetails(this.patientId);
     }
 
-
-
     this.leadform  = this.fb.group({
       name: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
@@ -113,7 +111,6 @@ leadeupdateapi(): void {
         'dayaBeforeExpiration',
         'permanentPriorityNotes',
         'Administrator',
-        'leadCreatedDate',
         'gender',
         'City',
         'State',

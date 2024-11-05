@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AllService } from 'src/app/Api/all.service';
+import { SweetsalertsServicesService } from 'src/app/sweetsalerts-services.service';
+
 
 @Component({
   selector: 'app-caregiver',
@@ -10,7 +12,8 @@ import { AllService } from 'src/app/Api/all.service';
 export class CaregiverComponent  implements OnInit{
 
   constructor( private route :Router,
-    private api:AllService
+    private api:AllService,
+    private swet: SweetsalertsServicesService
    ){
 
   }
@@ -39,6 +42,19 @@ export class CaregiverComponent  implements OnInit{
   }
 
 
+  itemDelete(itemDlt: any): void {
+    this.api.deleteCareGiver(itemDlt.id).subscribe(
+      () => {
+      //  window.location.reload();
+      this.swet.delete(`Deleted Caregiver Successfully`);
+      this.ngOnInit();
+        console.log('item deleted successfully');
+      },
+      (error) => {
+        console.error('Error deleting item', error);
+      }
+    );
+  }
 
 
 viewcaregiverProfile(clientId: string) {

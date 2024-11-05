@@ -178,7 +178,7 @@ postDoctors(data: any) {
    }
 
    deletePatient(id:any){
-    return this.delete(superAdminEndPoints.addpatients + id )
+    return this.delete(superAdminEndPoints.leadupdate + id )
 
    }
 
@@ -291,6 +291,10 @@ public leadData: any;
    caregiverProfileViewForAdmin(id:any){
     // const adminId = localStorage.getItem('id');
     return this.get(superAdminEndPoints.caregivercreateids + id )
+   }
+
+   deleteCareGiver(id:any){
+    return this.delete(superAdminEndPoints.caregivercreateids + id )
    }
 
    patientByID(id:any){

@@ -113,8 +113,8 @@ selectedCardId: number | null = null;
   patientByIdData:any=[];
   patientById(data: any) {
   this.id = data;
-  this.api.patientById(data).subscribe((res: any) => {
-    this.patientByIdData = res.data[0];
+  this.api.leadupdate(data).subscribe((res: any) => {
+    this.patientByIdData = res.data;
   })
 }
 
@@ -214,7 +214,8 @@ Onupload(event: any) {
 itemDelete(itemDlt: any): void {
   this.api.deletePatient(itemDlt.id).subscribe(
     () => {
-     window.location.reload();
+    //  window.location.reload();
+    this.swet.delete(`Deleted Lead Successfully`);
       console.log('item deleted successfully');
     },
     (error) => {
@@ -222,6 +223,8 @@ itemDelete(itemDlt: any): void {
     }
   );
 }
+
+
 
 
 

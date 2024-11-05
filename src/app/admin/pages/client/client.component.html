@@ -41,7 +41,7 @@
                     <th style="color: #4F99C6;">ASSIGNED CAREGIVERS</th>
                     <th style="color: #4F99C6;">SERVICE TYPE</th>
                     <th style="color: #4F99C6;">CLIENT NOTES</th>
-                    <!-- <th style="color: #4F99C6;">ATTACH DOCUMENT</th> -->
+                    <th style="color: #4F99C6;">ACTION</th>
                 </tr>
             </thead>
             <tbody style="text-wrap: nowrap;" class="">
@@ -63,14 +63,30 @@
                     <td> {{ a.caregiverName }} </td>
                     <td>{{a.servicetype}}</td>
                     <td>{{a.note}}</td>
-                    <!-- <td>
-                        <div class="d-flex justify-content-between">
-                            <button (click)="uploadDocument(a.attachDoc)" class="iconbutton"
-                                style="color: #4F99C6; border: none;">
-                                <i class="fa-solid fa-download"></i>
-                            </button>
-                        </div>
-                    </td> -->
+                    <td>
+                        <button type="button" class="btn btn-danger" (click)="patientById(a.id)" data-bs-toggle="modal" data-bs-target="#deelteLead">
+                            Delete
+                          </button>
+                          
+                          <!-- Modal -->
+                          <div class="modal fade" id="deelteLead" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                              <div class="modal-content">
+                                <div class="modal-header">
+                                  <h1 class="modal-title fs-5" id="exampleModalLabel">Delete lead</h1>
+                                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                  Are you sure you want to delete {{ patientByIdData.name }}'s lead?
+                                </div>
+                                <div class="modal-footer">
+                                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                  <button type="button" class="btn btn-primary" (click)="itemDelete(patientByIdData)" >Delete</button>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                    </td>
                     
                 </tr>
             </tbody>
@@ -82,10 +98,10 @@
         </div>
         <div class="col-sm-12 col-md-6 d-flex justify-content-end">
             <ul class="pagination gap-2  ">
-                <li class="page-item"><a class="page-link" href="#">First</a></li>
-                <li class="page-item"><a class="page-link" href="#">Previous</a></li>
-                <li class="page-item"><a class="page-link" href="#">Next</a></li>
-                <li class="page-item"><a class="page-link" href="#">Last</a></li>
+                <li class="page-item"><a class="page-link" >First</a></li>
+                <li class="page-item"><a class="page-link" >Previous</a></li>
+                <li class="page-item"><a class="page-link" >Next</a></li>
+                <li class="page-item"><a class="page-link" >Last</a></li>
             </ul>
         </div>
     </div>

@@ -105,6 +105,27 @@ getcaregiver() {
   });
 }
 
+id:any;
+patientByIdData:any=[];
+patientById(data: any) {
+this.id = data;
+this.api.leadupdate(data).subscribe((res: any) => {
+  this.patientByIdData = res.data;
+})
+}
+
+itemDelete(itemDlt: any): void {
+  this.api.deletePatient(itemDlt.id).subscribe(
+    () => {
+    //  window.location.reload();
+    this.swet.delete(`Deleted Lead Successfully`);
+      console.log('item deleted successfully');
+    },
+    (error) => {
+      console.error('Error deleting item', error);
+    }
+  );
+}
 
 updateleadebyidss(id: string, data: any): void {
   this.api.updateleadebyidss(id, data).subscribe((res: any) => {
