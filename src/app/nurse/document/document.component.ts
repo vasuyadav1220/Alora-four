@@ -20,6 +20,7 @@ export class DocumentComponent implements OnInit {
       document:new FormControl('',Validators.required),
       expiryDate:new FormControl('',Validators.required),
       caregiverId:new FormControl(this.userId),
+      nursecomment:new FormControl('',Validators.required),
     })
   }
 
@@ -84,6 +85,7 @@ export class DocumentComponent implements OnInit {
         
           'expiryDate',
           'caregiverId',
+          'nursecomment'
         ];
 
     

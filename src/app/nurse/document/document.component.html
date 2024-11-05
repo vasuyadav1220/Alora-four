@@ -14,6 +14,13 @@
                     <label class="form-label fw-bold" style="color: rgb(97, 95, 95);">Expiry Date</label>
                     <input type="date" class="form-control" formControlName="expiryDate">
                 </div>
+                <div class="col-md-12">
+                  <label class="form-label fw-bold" style="color: rgb(97, 95, 95);">Nurse Comment</label>
+        
+                  <textarea name=" " id="" type="text" class="form-control" formControlName="nursecomment" placeholder="Nurse Comment"></textarea>
+        
+               
+                </div>
                 <div class="col-12 d-flex justify-content-end">
                     <button type="submit" class="btn btn-primary" (click)="addDocument()">Add Document</button>
                 </div>
@@ -53,7 +60,9 @@
                         <th>File</th>
                         <th> Active Date</th>
                         <th>Expires date</th>
-                        <th>Action</th>
+                        <th>Nurse Comment</th>
+
+                        <!-- <th>Action</th> -->
                       </tr>
                     </thead>
                     <tbody>
@@ -72,11 +81,12 @@
                           
                         <td style="color: green;">{{clientdocument.created_at  | date:'dd-MM-yyyy'}}</td>
                         <td class="expires-date" style="color: red;">{{clientdocument.expiryDate | date:'dd-MM-yyyy'}}</td>
-                        <td>
+                        <td>{{clientdocument.nursecomment}}</td>
+                        <!-- <td>
                           <i class="fa-sharp fa-solid fa-download p-3" style="color: #438EB9;font-size: 20px;"></i>
                           <i class="fa-sharp fa-solid fa-square-pen p-3" style="color: rgb(82, 194, 82);font-size: 20px;"></i>
                           <i class="fa-solid fa-trash p-3" style="color: rgb(175, 40, 40); font-size: 20px;"></i>
-                        </td>
+                        </td> -->
                       </tr>
                     </tbody>
                   </table>
@@ -98,7 +108,9 @@
                         <th>File</th>
                         <th>Date</th>
                         <th>Expires</th>
-                        <th>Action</th>
+                        <th>Nurse Comment</th>
+
+                        <!-- <th>Action</th> -->
                       </tr>
                     </thead>
                     <tbody>
@@ -116,11 +128,12 @@
                    
                     <td style="color: green;">{{a.created_at  | date:'dd-MM-yyyy'}}</td>
                     <td class="expires-date" style="color: red;">{{a.expiryDate  | date:'dd-MM-yyyy'}}</td>
-                        <td>
+                    <td>{{a.nursecomment}}</td>
+                        <!-- <td>
                           <i class="fa-sharp fa-solid fa-download p-3" style="color: #438EB9;font-size: 20px;"></i>
                           <i class="fa-sharp fa-solid fa-square-pen p-3" style="color: rgb(82, 194, 82);font-size: 20px;"></i>
                           <i class="fa-solid fa-trash p-3" style="color: rgb(175, 40, 40); font-size: 20px;"></i>
-                        </td>
+                        </td> -->
                       </tr>
                    
                     </tbody>

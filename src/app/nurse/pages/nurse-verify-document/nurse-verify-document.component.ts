@@ -54,7 +54,8 @@ export class NurseVerifyDocumentComponent implements OnInit, AfterViewInit {
      })
 
      this.verifyClientForm = new FormGroup({
-      caregiverSignature:new FormControl('')
+      caregiverSignature:new FormControl(''),
+      nursecommentverified:new FormControl('')
      })
    }
 

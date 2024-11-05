@@ -25,6 +25,13 @@
           <label class="form-label fw-bold" style="color: rgb(97, 95, 95);">Expiry Date</label>
           <input type="date" class="form-control" formControlName="expiryDate">
         </div>
+        <div class="col-md-12">
+          <label class="form-label fw-bold" style="color: rgb(97, 95, 95);">Client Comment</label>
+
+          <textarea name=" " id="" type="text" class="form-control" formControlName="clientcomment" placeholder="client comment"></textarea>
+
+       
+        </div>
 
         <input type="text" formControlName="clientSignature" [(ngModel)]="profileData" hidden >
        
@@ -72,6 +79,7 @@
                   <th> Active Date</th>
                   <th>Expires date</th>
                   <th>Signature</th>
+                  <th>Client Comment</th>
                 </tr>
               </thead>
               <tbody>
@@ -93,6 +101,8 @@
                   <td>
                   <img [src]="clientdocument.clientSignature" style="width: 50px; border-radius: 30px; text-align: center;"  alt="">
                   </td>
+
+                  <td>{{clientdocument.clientcomment}}</td>
                 </tr>
               </tbody>
             </table>
@@ -113,8 +123,10 @@
                   <th>File</th>
                   <th>Date</th>
                   <th>Expires</th>
-                  <th>Action</th>
-                </tr>
+                  <th>Signature</th>
+
+                  <th>Client Comment</th>
+                                </tr>
               </thead>
               <tbody>
                 <tr *ngFor="let a of clientbyidatass;">
@@ -131,11 +143,11 @@
              
               <td style="color: green;">{{a.created_at  | date:'dd-MM-yyyy'}}</td>
               <td class="expires-date" style="color: red;">{{a.expiryDate  | date:'dd-MM-yyyy'}}</td>
-                  <td>
-                    <i class="fa-sharp fa-solid fa-download p-3" style="color: #438EB9;font-size: 20px;"></i>
-                    <i class="fa-sharp fa-solid fa-square-pen p-3" style="color: rgb(82, 194, 82);font-size: 20px;"></i>
-                    <i class="fa-solid fa-trash p-3" style="color: rgb(175, 40, 40); font-size: 20px;"></i>
-                  </td>
+              <td>
+                <img [src]="a.clientSignature" style="width: 50px; border-radius: 30px; text-align: center;"  alt="">
+                </td>
+              <td>{{a.clientcomment}}</td>
+                 
                 </tr>
              
               </tbody>
