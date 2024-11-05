@@ -141,6 +141,7 @@ export class MyProfileComponent implements OnInit, AfterViewInit {
         this.service.putleadupdate(this.clientID, formData).subscribe(
           (res: any) => {
             this.swet.SucessToast(`Profile Updated Successfully`);
+            
             console.log('Updated Lead Profile:', res.data);
             this.ngOnInit()
           },

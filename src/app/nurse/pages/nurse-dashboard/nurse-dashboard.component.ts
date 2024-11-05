@@ -9,11 +9,13 @@ import { AllService } from 'src/app/Api/all.service';
 export class NurseDashboardComponent {
 
 
-
-
   constructor(
     private api: AllService
-  ) { }
+  ) {
+    const userIdString = localStorage.getItem('caregiverid');
+    console.log("id client ", userIdString) 
+    this.userId = userIdString ? parseInt(userIdString, 10) : null;
+   }
 
   patientsCounts:any=[];
   patientsCount:any=[];
@@ -22,7 +24,28 @@ export class NurseDashboardComponent {
   ngOnInit(): void {
     this.getgetleadss();
     this.getPatients();
+    this.getDocumentByNurseId();
+    this.getPatientProfile()
     throw new Error('Method not implemented.');
+    
+  }
+
+  document:any[]=[];
+  documentss:any[]=[];
+  getDocumentByNurseId(){
+    this.api.getDocumentByNurseId().subscribe((res:any)=>{
+      console.log(res);
+      this.document=res.data;
+    })
+  }
+
+  userId: any;
+  clientbyidata:any=[];
+  getPatientProfile(): void {
+    this.api.getclientdocumentbynurseids(this.userId).subscribe((res: any) => {
+      console.log('Client Profile:', res.data);
+      this.clientbyidata= res.data;
+    });
   }
 
   getgetleadss() {

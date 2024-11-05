@@ -24,6 +24,17 @@
     margin-bottom: 10px;
 }
 
+.main-box1{
+    background-color: #16d39a;
+}
+
+.main-box2{
+    background-color:#16d39a;
+}
+.main-box3{
+    background-color: rgb(255 117 136);
+}
+
 .stat-box p {
     font-size: 0.9rem;
     color: #666;
