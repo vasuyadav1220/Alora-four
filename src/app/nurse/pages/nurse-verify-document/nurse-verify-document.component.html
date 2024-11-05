@@ -1,22 +1,16 @@
-<div class="container mt-5">
+<!-- <div class="container mt-5">
     <div class="col-lg-12 col-md-12 text-white gap-2 mt-2" style="background-color: #438EB9; height: 40px;">
       <h5 class="mt-3 p-2">Nurse Verify's Client Document</h5>
     </div>
     <div class="card mt-4">
       <div class="card-body">
         <form [formGroup]="addDocumentForm" class="row g-3">
-          <!-- <div class="col-md-6">
-            <label class="form-label fw-bold" style="color: rgb(97, 95, 95);">Document</label>
-            <input type="file" class="form-control" formControlName="document" id="fileInput" (change)="Onupload($event)">
-          </div> -->
+       
           <div class="col-md-6">
             <label class="form-label fw-bold" style="color: rgb(97, 95, 95);">Signature Uploded</label>
             <input type="file" class="form-control" >
           </div>
-          <!-- <div class="col-md-6">
-            <label class="form-label fw-bold" style="color: rgb(97, 95, 95);">Expiry Date</label>
-            <input type="date" class="form-control" formControlName="expiryDate">
-          </div> -->
+        
          
           <div class="col-12 d-flex justify-content-end">
             <button type="submit" class="btn btn-primary" (click)="addDocument()">Add Document</button>
@@ -24,10 +18,10 @@
         </form>
       </div>
     </div>
-  </div>
+  </div> -->
   
   
-  <div class="col-lg-12 col-md-12 text-white gap-2 mt-4"
+  <div class="col-lg-12 col-md-12 text-white gap-2 mt-5"
     style="white-space: wrap ;background-color: #438EB9; height: 40px; ">
     <h5 class="mt-3  p-2">List Client Documents</h5>
   </div>
@@ -51,7 +45,7 @@
                 <thead>
                   <tr>
                     <th>File</th>
-                    <th>Nurse Signature</th>
+                    <th>Client Signature</th>
                     <th>Active Date</th>
                     <th>Expires date</th>
                     <th>Action</th>
@@ -74,7 +68,8 @@
                         <div class="mt-2">
                             <img 
                                 style="width: 90px; text-align: center;" 
-                                src="https://cdn.prod.website-files.com/5ff41ef56b696d4e73d822ec/64660b2c64f575f5dcc3bb1e_VS-1.svg" 
+                                
+                                [src]="clientdocument.clientSignature"
                                 alt="img"
                             />
                         </div>
@@ -83,9 +78,37 @@
                     <td style="color: green;">{{clientdocument.created_at  | date:'dd-MM-yyyy'}}</td>
                     <td class="expires-date" style="color: red;">{{clientdocument.expiryDate  | date:'dd-MM-yyyy'}}</td>
                     <td>
-                      <i class="fa-sharp fa-solid fa-download p-3" style="color: #438EB9;font-size: 20px;"></i>
-                      <i class="fa-sharp fa-solid fa-square-pen p-3" style="color: rgb(82, 194, 82);font-size: 20px;"></i>
-                      <i class="fa-solid fa-trash p-3" style="color: rgb(175, 40, 40); font-size: 20px;"></i>
+                                           <!-- Button trigger modal -->
+<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal"  (click)="setClientId(clientdocument.clientId)">
+  Verify
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+          <h2 class="modal-title fs-5" id="exampleModalLabel">Verification with your signature  </h2>
+          <img [src]="profileData" class="img-thumbnail" style="width: 15%;margin-left: 2%;"  alt="">
+
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form  [formGroup]="verifyClientForm" (ngSubmit)="verifyClient()">
+        
+          Are you sure you want to verify this client ?
+          <!-- <img [src]="profileData"  alt=""> -->
+          <input type="text" formControlName="caregiverSignature" [(ngModel)]="profileData" hidden >
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
+            <button type="submit" class="btn btn-primary">Yes</button>
+          </div>
+        </form>
+      </div>
+      
+    </div>
+  </div>
+</div>
                     </td>
                   </tr>
                 </tbody>
@@ -107,7 +130,7 @@
                     <th>File</th>
                     <th>Date</th>
                     <th>Expires</th>
-                    <th>Action</th>
+                  
                   </tr>
                 </thead>
                 <tbody>
@@ -125,11 +148,7 @@
                
                 <td style="color: green;">{{a.created_at  | date:'dd-MM-yyyy'}}</td>
                 <td class="expires-date" style="color: red;">{{a.expiryDate  | date:'dd-MM-yyyy'}}</td>
-                    <td>
-                      <i class="fa-sharp fa-solid fa-download p-3" style="color: #438EB9;font-size: 20px;"></i>
-                      <i class="fa-sharp fa-solid fa-square-pen p-3" style="color: rgb(82, 194, 82);font-size: 20px;"></i>
-                      <i class="fa-solid fa-trash p-3" style="color: rgb(175, 40, 40); font-size: 20px;"></i>
-                    </td>
+                   
                   </tr>
                
                 </tbody>

@@ -48,6 +48,8 @@ selectedCardId: number | null = null;
     email :['',Validators.required]   ,   
     servicetype :['',Validators.required],
     note  :['',Validators.required],
+    password  :['',Validators.required],
+    caregiverId:[this.userId],
   });
 
   // this.getPlans();
@@ -69,7 +71,7 @@ selectedCardId: number | null = null;
 
 
   getPatients(){
-    this.api.getleadss().subscribe((res:any)=>{
+    this.api.getNurseLeads(this.userId).subscribe((res:any)=>{
       this.patientsCount = res.data.reverse();
       this.filteredleads = [...this.patientsCount];
       this.totalPages = Math.ceil(this.patientsCount.length / this.itemsPerPage);

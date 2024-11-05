@@ -47,6 +47,7 @@ selectedCardId: number | null = null;
     email :['',Validators.required]   ,   
     servicetype :['',Validators.required],
     note  :['',Validators.required],
+    password:['',Validators.required],
   });
 
   // this.getPlans();
@@ -127,9 +128,9 @@ toggleVerified(data: any) {
       const accountStatus = res.data.leadStatus;
       const doctorName = res.data.name;
       if (accountStatus) {
-        this.swet.SucessToast(`${doctorName} Lead Action Successfully`);
+        this.swet.SucessToast(` Lead Action Successfully`);
       } else {
-        this.swet.SucessToast(`${doctorName} Lead Action Sccessfully`);
+        this.swet.SucessToast(` Lead Action Sccessfully`);
       }
     }
   });

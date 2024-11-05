@@ -13,10 +13,6 @@ export class AddclientComponent implements OnInit {
 
   leadform!:FormGroup;
 
-
-
-
-
   constructor(private fb: FormBuilder,
     private service:AllService,
     private route:Router,
@@ -33,9 +29,10 @@ export class AddclientComponent implements OnInit {
     console.log( 'admin id', this.userId);
        this.leadform = this.fb.group({
       name:['',Validators.required]  ,      
-      email :['',Validators.required]   ,   
-      servicetype :['',Validators.required],
-      note  :['',Validators.required]  ,    
+      email:['',Validators.required]   ,   
+      servicetype:['',Validators.required],
+      note:['',Validators.required],
+      password:['',Validators.required],   
     });
   }
 

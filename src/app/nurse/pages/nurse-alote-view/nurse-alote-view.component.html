@@ -1,40 +1,25 @@
 <div class="container mt-5">
+  <form [formGroup]="updateForm" (ngSubmit)="updateProfile()" >
   <div class="row">
-    <div class="col-md-10 offset-md-1"
+    <div class="col-md-8"
       style="box-shadow: rgba(67, 71, 85, 0.27) 0px 0px 0.25em, rgba(90, 125, 188, 0.05) 0px 0.25em 1em;">
       <div class="">
         <div class="card-header" style="font-weight: bold; font-size: 20px">
           Personal Information
         </div>
-        <form>
+       
           <div class="card-body">
             <div class="row">
-              <div class="col-md-6">
-                <div class="col-sm-12 col-md-3" style="line-height: 2rem; height: 190px;">
-                  <label class="ms-4" for="specificSizeSelect"> IMAGE:</label>
-                  <div class="image-upload-wrap mb-3 ms-4" style="width: 90%;">
-                    <div class="row">
-                      <div class="col-md-6 text-center">
-                        <img 
-                          style=" border-radius: 70px; height: 120px; width: 150px; margin-right: 10px; padding-bottom: 10px;">
-                        <input type="file" class="form-control" style="width: 100px;"
-                          formControlName="profile">
-                      </div>
-                    </div>
-                    <div class="drag-text">
-                      <h3 style="opacity: 0;">Drag and drop a file or select</h3>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="col-md-6" style="margin-top: 40px;">
+             
+              <div class="col-md-6 mt-4">
                 <div class="form-group row">
                   <div class="col-md-6">
                     <label for="caregiverName">Caregiver Name</label>
                   </div>
                   <div class="col-md-6">
                     <input type="text" class="form-control form-control-sm" id="caregiverName" placeholder="Caregiver Name"
-                      formControlName="caregiverName" style="width: 100%" />
+                      formControlName="caregiverName" [(ngModel)]="profileData.caregiverName" style="width: 100%" />
+                      
                   </div>
                 </div>
                 <div class="form-group row mt-2">
@@ -43,10 +28,16 @@
                   </div>
                   <div class="col-md-6">
                     <input type="email" class="form-control form-control-sm" id="email" placeholder="Email"
-                      formControlName="email" />
+                      formControlName="email" [(ngModel)]="profileData.email" />
                   </div>
                 </div>
               </div>
+              
+              <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 mt-4">
+                <label for="">My Signature</label>
+                <img [src]="profileData.caregiverSignature" alt="" class="img-thumbnail mt-2" >
+              </div>
+              
             </div>
             <hr />
             <div class="card-body">
@@ -56,7 +47,7 @@
                 </div>
                 <div class="col-md-6">
                   <input type="text" class="form-control form-control-sm" id="address" placeholder="Address"
-                    formControlName="address" />
+                    formControlName="address" [(ngModel)]="profileData.address" />
                 </div>
               </div>
               <div class="form-group row mt-2">
@@ -65,23 +56,45 @@
                 </div>
                 <div class="col-md-6">
                   <textarea class="form-control form-control-sm" id="caregiverNote" placeholder="Caregiver Note"
-                    formControlName="caregiverNote" rows="3"></textarea>
+                    formControlName="caregiverNote" [(ngModel)]="profileData.caregiverNote" rows="3"></textarea>
                 </div>
               </div>
-              <div class="form-group row mt-2">
+              <!-- <div class="form-group row mt-2">
                 <div class="col-md-6">
                   <label for="password">Password</label>
                 </div>
                 <div class="col-md-6">
                   <input type="password" class="form-control form-control-sm" id="password" placeholder="Password"
-                    formControlName="password" />
+                    formControlName="password" [(ngModel)]="profileData.password" />
                 </div>
-              </div>
-              <button class="btn btn-success mt-2" type="submit">Save</button>
+              </div> -->
+             
             </div>
           </div>
-        </form>
+       
       </div>
     </div>
+
+    
+    <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+      <h4>Add Signature</h4>
+      <canvas #signatureCanvas></canvas>
+      
+      <div class="row">
+        
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+            <button (click)="clearSignature()" class="btn btn-warning m-1" >Clear </button>
+<!-- <button  class="btn btn-primary" >Save  </button> -->
+        </div>
+        
+      </div>
+      
+    
+
+    </div>
+    
+
   </div>
+  <button class="btn btn-success mt-2" (click)="saveSignature()" type="submit">Update Profile</button>
+</form>
 </div>

@@ -5,7 +5,7 @@
   </div>
   <div class="card mt-5 ">
     <div class="card-body ">
-      <form class="row g-3" [formGroup]="caregiverForm">
+      <form class="row g-3" [formGroup]="caregiverForm" (ngSubmit)="addCareGiver()" >
         <div class="col-md-6">
           <label for="caregiverName" class="form-label fw-bold" style="color: rgb(97, 95, 95); ">Caregiver Name</label>
           <input type="text" class="form-control" id="caregiverName" placeholder="Name" formControlName="caregiverName">
@@ -24,11 +24,11 @@
           <input placeholder="address" type="text" class="form-control" id="address" formControlName="address">
         </div>
 
-        <div class="col-md-6">
+        <!-- <div class="col-md-6">
           <label for="electronicSignature" class="form-label fw-bold" style="color: rgb(97, 95, 95); ">Electronic
             Signature</label>
           <input type="file"  (change)="Onupload($event)" class="form-control" id="electronicSignature" formControlName="electronicSignature">
-        </div>
+        </div> -->
         <div class="col-md-6">
           <label for="caregiverNote" class="form-label fw-bold" style="color: rgb(97, 95, 95); ">Caregiver Notes</label>
           <textarea placeholder="Caregiver Note" class="form-control" id="caregiverNote" rows="2"
@@ -37,7 +37,7 @@
 
 
         <div class="col-12 d-flex justify-content-end fw-bold">
-          <button type="submit" (click)="caregivercreted()" class="btn btn-primary">Save</button>
+          <button type="submit" class="btn btn-primary">Save</button>
         </div>
       </form>
     </div>

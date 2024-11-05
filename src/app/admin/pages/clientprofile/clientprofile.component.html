@@ -55,11 +55,11 @@
                     <div class="col-md-6" style="margin-top: 40px;">
                       <div class="form-group row " >
                         <div class="col-md-6">
-                          <label for="firstName">First Name</label>
+                          <label for="firstName">Name</label>
                         </div>
                         <div class="col-md-6">
                           <input type="text" class="form-control form-control-sm" id="firstName" placeholder="Test"
-                            formControlName="name" style="width: 100%" />
+                            formControlName="name" style="width: 100%" [(ngModel)]="patientData.name" />
                         </div>
                       </div>
                       <div class="form-group row mt-2" >
@@ -103,15 +103,7 @@
                           formControlName="zipCode" />
                       </div>
                     </div>
-                    <div class="form-group row mt-2">
-                      <div class="col-md-6">
-                        <label for="ssn">Lead Create Date</label>
-                      </div>
-                      <div class="col-md-6">
-                        <input type="text" class="form-control form-control-sm" id="ssn" placeholder="Lead Create Date"
-                          formControlName="leadCreatedDate" />
-                      </div>
-                    </div>
+                    
                     <div class="form-group row mt-2">
                       <div class="col-md-6">
                         <label for="ssn">Gender</label>

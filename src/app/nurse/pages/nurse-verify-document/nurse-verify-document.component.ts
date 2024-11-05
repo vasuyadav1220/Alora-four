@@ -1,32 +1,88 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ViewChild, ElementRef, AfterViewInit,OnInit } from '@angular/core';
+import SignaturePad from 'signature_pad';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { AllService } from 'src/app/Api/all.service';
 import { SweetsalertsServicesService } from 'src/app/sweetsalerts-services.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-nurse-verify-document',
   templateUrl: './nurse-verify-document.component.html',
   styleUrls: ['./nurse-verify-document.component.css']
 })
-export class NurseVerifyDocumentComponent {
+
+export class NurseVerifyDocumentComponent implements OnInit, AfterViewInit {
+
+  @ViewChild('signatureCanvas') signatureCanvas!: ElementRef<HTMLCanvasElement>;
+  private signaturePad!: SignaturePad;
+
+  ngAfterViewInit() {
+    this.signaturePad = new SignaturePad(this.signatureCanvas.nativeElement);
+  }
+
+    clearSignature(): void {
+      this.signaturePad.clear();
+    }
+
+    saveSignature(): void {
+      if (this.signaturePad.isEmpty()) {
+        alert("Please provide a signature first.");
+      } else {
+        const base64Data = this.signaturePad.toDataURL();
+        console.log("Signature saved as:", base64Data);
+        // Store the base64Data for later use
+        this.addDocumentForm.patchValue({ nurseVerifySignature: base64Data });
+      }
+    }
+
   ngOnInit(): void {
     this.getPatientProfile();
+    this.getNursesign()
    }
    addDocumentForm:FormGroup;
+   verifyClientForm:FormGroup;
    userId: any;
    clientbyidata:any=[];
    clientbyidatass:any[]=[];
-   constructor(private api:AllService,private swet:SweetsalertsServicesService){
+
+   constructor(private api:AllService,private swet:SweetsalertsServicesService,private route:Router){
      const userIdString = localStorage.getItem('caregiverid');
      console.log("id client ", userIdString) 
      this.userId = userIdString ? parseInt(userIdString, 10) : null;
      this.addDocumentForm=new FormGroup({
        document:new FormControl('',Validators.required),
-       expiryDate:new FormControl('',Validators.required),
-       clientId:new FormControl(this.userId),
+     })
+
+     this.verifyClientForm = new FormGroup({
+      caregiverSignature:new FormControl('')
      })
    }
+
+   id: any;
+   @ViewChild('closeModal') closeModal!: ElementRef;
+
+    setClientId(clientId: any) {
+      this.id = clientId; // Set the client ID when "Verify" is clicked
+    }
+
+   verifyClient(){
+    this.api.verifyClientByNurse(this.id ,this.verifyClientForm.value).subscribe((res:any)=>{
+      // this.closeModal.nativeElement.click();
+      this.swet.SucessToast(`Client verified successfully`);
+          // this.route.navigate(['nurse/leads']);
+    })
+   }
  
+  adminId:any;
+  profileData:any=[];
+   
+  getNursesign(){
+    this.api.caregivercreategetbyid(this.adminId).subscribe((res:any)=>{
+      this.profileData = res.data.caregiverSignature;
+      console.log('profile data',this.profileData)
+    })
+  }
+
      imgs!: File;
      imagesBox = '../../../../../../assets/img/product/product1.jpg'
 
@@ -38,7 +94,7 @@ export class NurseVerifyDocumentComponent {
        const filesAmount = event.target.files.length;
        for (let i = 0; i < filesAmount; i++) {
          const reader = new FileReader();
-         reader.onload = (event: any) => {
+         reader.onload = (event: any) => {  
            this.imagesBox = event.target.result;
          }
          reader.readAsDataURL(event.target.files[i]);

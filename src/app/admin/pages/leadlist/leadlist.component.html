@@ -42,6 +42,10 @@
                <div class="col-sm-12 mb-3">
                   <input type="text" class="form-control" placeholder="Note" formControlName="note">
                </div>
+
+               <div class="col-sm-12 mb-3">
+                <input type="text" class="form-control" placeholder="Password" formControlName="password">
+             </div>
         
                <div class="modal-footer">
                 <button type="button" class="btn btn"
@@ -101,10 +105,11 @@
       <tbody style="text-wrap: nowrap;" class="">
         <tr style="background-color: #f9f9f9;" *ngFor="let a of filteredleads;   let i = index">
           <td>{{ (currentPage - 1) * itemsPerPage + i + 1 }}</td>
-          <td><a routerLink="/Admin/Clientprofile_view" style="text-decoration: none;">{{a.name}}</a></td>
+          <td><a [routerLink]="['/Admin/Clientprofile_view', a.id]" style="text-decoration: none;">{{a.name}}</a></td>
           <td>{{a.email}}</td>
           <td>{{a.servicetype}}</td>
           <td>{{a.note}}</td>
+
           <td>
             <div class="pretty p-default p-thick p-pulse" *ngIf="a.leadStatus">
               <input type="checkbox" [checked]="true" (change)="toggleVerified(a)" />

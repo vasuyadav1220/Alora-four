@@ -272,13 +272,12 @@ public leadData: any;
 
 
    leadupdate(id:any){
-    const adminId = localStorage.getItem('id');
     return this.get(superAdminEndPoints.leadupdate + id )
    }
 
    caregivercreategetbyid(id:any){
     const adminId = localStorage.getItem('id');
-    return this.get(superAdminEndPoints.caregivercreateids + id )
+    return this.get(superAdminEndPoints.caregivercreateids + adminId )
    }
 
    
@@ -301,11 +300,18 @@ public leadData: any;
     const headers = new HttpHeaders({
     });
   
-    return this.http.put(superAdminEndPoints.caregivercreateidsdata +id , data, { headers });
+    return this.http.put(superAdminEndPoints.caregivercreateidsdata + id , data, { headers });
+  }
+
+
+  verifyClientByNurse(id:any, data:any) {
+    const headers = new HttpHeaders({
+    });
+  
+    return this.http.put(superAdminEndPoints.verifyClientFromNurse + id , data, { headers });
   }
 
   
-
 
 
 
@@ -375,6 +381,11 @@ public leadData: any;
     });
     return this.http.post(superAdminEndPoints.addDocument, data, { headers });
   }
+
+  verifyClient(data:any){
+    return this.patch(superAdminEndPoints.addDocument,data)
+  }
+  
 
  clientDocumentbyid(){
     const patientId = localStorage.getItem('patient_id');

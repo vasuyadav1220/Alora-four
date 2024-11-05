@@ -98,7 +98,7 @@ export class DocumentComponent implements OnInit {
         this.api.addDocument(formData).subscribe((res: any) => {
           console.log(res);
           const patientName = res.data.name;  // Get the doctor's name from the response
-          this.swet.SucessToast(`Caregiver ${patientName} created successfully`);
+          this.swet.SucessToast(`Caregiver created successfully`);
           // this.route.navigate(['Admin/view_patients']);
         },
         (err) => {

@@ -123,9 +123,10 @@ updateleadebyidss(id: string, data: any): void {
 //        
 
 
-updateCaregiver(clientId: string, caregiverId: string): void {
+updateCaregiver(clientId: string, caregiverId: string,caregiverName: string): void {
   const data = {
-    caregiverId: caregiverId ? Number(caregiverId) : null // Convert to number or set to null if empty
+    caregiverId: caregiverId ? Number(caregiverId) : null, // Convert to number or set to null if empty
+    caregiverName: caregiverName 
   };
   this.updateleadebyidss(clientId, data);
 }
@@ -133,7 +134,8 @@ updateCaregiver(clientId: string, caregiverId: string): void {
 updateCaregiverSelection(clientId: string, event: Event): void {
   const selectElement = event.target as HTMLSelectElement;
   const caregiverId = selectElement.value;
-  this.updateCaregiver(clientId, caregiverId);
+  const caregiverName = selectElement.options[selectElement.selectedIndex].text;
+  this.updateCaregiver(clientId, caregiverId,caregiverName);
 }
 
 }

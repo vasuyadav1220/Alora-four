@@ -4,7 +4,19 @@
   </div>
   <div class="card mt-4">
     <div class="card-body">
+      
+      <div class="row justify-content-end">
+        
+        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 text-end">
+          <label for="">Signature</label>
+          <br>
+          <img [src]="profileData" class="img-thumbnail w-25" alt="">
+        </div>
+        
+      </div>
+      
       <form [formGroup]="addDocumentForm" class="row g-3">
+
         <div class="col-md-6">
           <label class="form-label fw-bold" style="color: rgb(97, 95, 95);">Document</label>
           <input type="file" class="form-control" formControlName="document" id="fileInput" (change)="Onupload($event)">
@@ -13,6 +25,17 @@
           <label class="form-label fw-bold" style="color: rgb(97, 95, 95);">Expiry Date</label>
           <input type="date" class="form-control" formControlName="expiryDate">
         </div>
+
+        <input type="text" formControlName="clientSignature" [(ngModel)]="profileData" hidden >
+       
+        
+        
+        <!-- <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+          <canvas #signatureCanvas></canvas>
+          <button (click)="clearSignature()" class="btn btn-warning">Clear signature</button>
+    <button >Save signature </button>
+        </div> -->
+        
         <div class="col-12 d-flex justify-content-end">
           <button type="submit" class="btn btn-primary" (click)="addDocument()">Add Document</button>
         </div>
@@ -48,7 +71,7 @@
                   <th>File</th>
                   <th> Active Date</th>
                   <th>Expires date</th>
-                  <th>Action</th>
+                  <th>Signature</th>
                 </tr>
               </thead>
               <tbody>
@@ -68,9 +91,7 @@
                   <td style="color: green;">{{clientdocument.created_at  | date:'dd-MM-yyyy'}}</td>
                   <td class="expires-date" style="color: red;">{{clientdocument.expiryDate  | date:'dd-MM-yyyy'}}</td>
                   <td>
-                    <i class="fa-sharp fa-solid fa-download p-3" style="color: #438EB9;font-size: 20px;"></i>
-                    <i class="fa-sharp fa-solid fa-square-pen p-3" style="color: rgb(82, 194, 82);font-size: 20px;"></i>
-                    <i class="fa-solid fa-trash p-3" style="color: rgb(175, 40, 40); font-size: 20px;"></i>
+                  <img [src]="clientdocument.clientSignature" style="width: 50px; border-radius: 30px; text-align: center;"  alt="">
                   </td>
                 </tr>
               </tbody>

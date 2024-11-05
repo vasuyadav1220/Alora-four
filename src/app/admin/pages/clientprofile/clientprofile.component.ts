@@ -18,6 +18,9 @@ export class ClientprofileComponent implements OnInit {
   imgs!: File;
     imagesBox = '../../../../../../assets/img/product/product1.jpg'
 
+    patientId: any;
+    patientData: any;
+
   constructor(
     private fb: FormBuilder,
     private service: AllService,
@@ -31,6 +34,13 @@ export class ClientprofileComponent implements OnInit {
       console.log('Client ID:', this.userId);
       this.getClientProfile(this.userId); 
     });
+
+    this.patientId = this.route.snapshot.paramMap.get('id');
+    if (this.patientId) {
+      this.getPatientDetails(this.patientId);
+    }
+
+
 
     this.leadform  = this.fb.group({
       name: ['', Validators.required],
@@ -55,6 +65,13 @@ export class ClientprofileComponent implements OnInit {
     });
   }
 
+  getPatientDetails(id: any): void {
+    this.service.leadupdate(id).subscribe((res: any) => {
+      this.patientData = res.data;
+      console.log('Patient Details:', this.patientData);
+    });
+  }
+
   onSubmit(): void {
     if (this.leadform .valid) {
       this.service.addlead(this.leadform .value).subscribe((res: any) => {
@@ -73,7 +90,7 @@ export class ClientprofileComponent implements OnInit {
 
 
 leadeupdateapi(): void {
-  alert("To change your personal data please contact us");
+  // alert("To change your personal data please contact us");
   console.log("After Lead data", this.leadform .value);
   if (this.leadform .invalid) {
     return; 

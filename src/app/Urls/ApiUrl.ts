@@ -48,6 +48,7 @@ export const superAdminEndPoints = {
      caregivercreate: `${baseUrl}caregiver`,
 
      caregiverget: `${baseUrl}caregivers`,
+     caregivergetById: `${baseUrl}caregivers`,
      getPlans: `${baseUrl}plans`,
      addPlans: `${baseUrl}plan`,
      deletePlans: `${baseUrl}plan/`,
@@ -61,9 +62,8 @@ export const superAdminEndPoints = {
      getfacilitycategorys: `${baseUrl}facilitycategorys`,
      addfacilitycategorys: `${baseUrl}facilitycategory`,
      updateleadebyid:`${baseUrl}lead/`,
-
-
      getDocument: `${baseUrl}document/`,
+     verifyClientFromNurse: `${baseUrl}document/clientid/`,
      getDocumentByNurseId: `${baseUrl}document/active?caregiverId=`,
      getDocumentByNurseIdArchive: `${baseUrl}document/expire?caregiverId=`,
      nurseLeads: `${baseUrl}lead/caregiverid/`,

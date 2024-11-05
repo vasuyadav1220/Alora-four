@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ViewChild, ElementRef, AfterViewInit,OnInit } from '@angular/core';
+import SignaturePad from 'signature_pad';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { AllService } from 'src/app/Api/all.service';
 import { SweetsalertsServicesService } from 'src/app/sweetsalerts-services.service';
@@ -8,13 +9,42 @@ import { SweetsalertsServicesService } from 'src/app/sweetsalerts-services.servi
   templateUrl: './documents.component.html',
   styleUrls: ['./documents.component.css']
 })
-export class DocumentsComponent implements OnInit {
+export class DocumentsComponent implements OnInit , AfterViewInit {
+  @ViewChild('signatureCanvas') signatureCanvas!: ElementRef<HTMLCanvasElement>;
+  private signaturePad!: SignaturePad;
+  profileData: any;
+
+  ngAfterViewInit() {
+    this.signaturePad = new SignaturePad(this.signatureCanvas.nativeElement);
+  }
+
   ngOnInit(): void {
    this.getPatientProfile();
    this.getPatientclientdata()
+   this.getMySign();
   }
 
+  getMySign(): void {
+    this.api.patientByID(this.userId).subscribe((res: any) => {
+      console.log('Client Profile:', res.data);
+      this.profileData = res.data.clientSignature;
+    });
+  }
 
+  clearSignature(): void {
+    this.signaturePad.clear();
+  }
+
+  saveSignature(): void {
+    if (this.signaturePad.isEmpty()) {
+      alert("Please provide a signature first.");
+    } else {
+      const base64Data = this.signaturePad.toDataURL();
+      console.log("Signature saved as:", base64Data);
+      // Store the base64Data for later use
+      this.addDocumentForm.patchValue({ clientSignature: base64Data });
+    }
+  }
 
   addDocumentForm:FormGroup;
   userId: any;
@@ -28,14 +58,13 @@ export class DocumentsComponent implements OnInit {
     this.addDocumentForm=new FormGroup({
       document:new FormControl('',Validators.required),
       expiryDate:new FormControl('',Validators.required),
+      clientSignature:new FormControl('',Validators.required),
       clientId:new FormControl(this.userId),
     })
   }
 
     imgs!: File;
     imagesBox = '../../../../../../assets/img/product/product1.jpg'
-
-
 
 
   Onupload(event: any) {
@@ -70,6 +99,7 @@ export class DocumentsComponent implements OnInit {
         
           'expiryDate',
           'clientId',
+          'clientSignature',
         ];
 
     
@@ -85,6 +115,8 @@ export class DocumentsComponent implements OnInit {
           console.log(res);
           const patientName = res.data.name;  // Get the doctor's name from the response
           this.swet.SucessToast(`Caregiver ${patientName} created successfully`);
+          this.addDocumentForm.reset();
+          this.ngOnInit()
           // this.route.navigate(['Admin/view_patients']);
         },
         (err) => {

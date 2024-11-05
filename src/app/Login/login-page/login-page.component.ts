@@ -51,6 +51,7 @@ export class LoginPageComponent implements OnInit {
   //   }
   // }
 
+  errorMessage: string | null = null;
 
   addPatients() {
     if (this.loginForm.invalid) {
@@ -66,8 +67,15 @@ export class LoginPageComponent implements OnInit {
             console.log("login", login);
             this.swet.SucessToast(`${login} Login successfully`);
             console.log("res.message", res.message);
+            this.errorMessage = null; // Clear error message on success
           }
         },
+        error: (message) => {
+          if (message) { // Check for 403 error
+            this.errorMessage = 'Access denied: Your Lead is not approve! Please contact Admin.'; // Set error message
+            this.swet.errorToasts(this.errorMessage); // Show error message
+          }
+        }
       });
     }
 }
@@ -115,8 +123,8 @@ export class LoginPageComponent implements OnInit {
     }
     else if (data === 'patient') {  
       // this.form.controls['mobileNumber'].setValue('+919644605330');
-      this.loginForm.controls['email'].setValue('patient@gmail.com');
-      this.loginForm.controls['password'].setValue('patient');
+      this.loginForm.controls['email'].setValue('hemant@gmail.com');
+      this.loginForm.controls['password'].setValue('123456');
     }
   }
   showPassword: boolean = false;

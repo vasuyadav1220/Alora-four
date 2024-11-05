@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ViewChild, ElementRef, AfterViewInit,OnInit } from '@angular/core';
+import SignaturePad from 'signature_pad';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AllService } from 'src/app/Api/all.service';
@@ -9,7 +10,29 @@ import { SweetsalertsServicesService } from 'src/app/sweetsalerts-services.servi
   templateUrl: './my-profile.component.html',
   styleUrls: ['./my-profile.component.css']
 })
-export class MyProfileComponent implements OnInit {
+export class MyProfileComponent implements OnInit, AfterViewInit {
+
+  @ViewChild('signatureCanvas') signatureCanvas!: ElementRef<HTMLCanvasElement>;
+  private signaturePad!: SignaturePad;
+
+  ngAfterViewInit() {
+    this.signaturePad = new SignaturePad(this.signatureCanvas.nativeElement);
+  }
+
+  clearSignature(): void {
+    this.signaturePad.clear();
+  }
+
+  saveSignature(): void {
+    if (this.signaturePad.isEmpty()) {
+      alert("Please provide a signature first.");
+    } else {
+      const base64Data = this.signaturePad.toDataURL();
+      console.log("Signature saved as:", base64Data);
+      // Store the base64Data for later use
+      this.leadform.patchValue({ clientSignature: base64Data });
+    }
+  }
 
   leadform !: FormGroup;
   userId: any;
@@ -24,7 +47,10 @@ export class MyProfileComponent implements OnInit {
     private swet: SweetsalertsServicesService
   ) {}
 
+  clientID:any;
   ngOnInit(): void {
+    this.clientID=localStorage.getItem('patient_id')
+
     this.route.params.subscribe(params => {
       this.userId = params['id'];
       console.log('Client ID:', this.userId);
@@ -50,14 +76,17 @@ export class MyProfileComponent implements OnInit {
       City: [''],
       State: [''],
       zipCode: [''],
-      profile: ['']
+      profile: [''],
+      clientSignature:['']
     });
   }
 
+  profileData:any=[];
+
   getPatientProfile(): void {
     this.service.patientByID(this.userId).subscribe((res: any) => {
-      this.leadform .patchValue(res.data); // Assuming the response has the client data
       console.log('Client Profile:', res.data);
+      this.profileData = res.data;
     });
   }
 
@@ -71,7 +100,7 @@ export class MyProfileComponent implements OnInit {
   }
 
   leadeupdateapi(): void {
-    alert("To change your personal data please contact us");
+    // alert("To change your personal data please contact us");
     console.log("After Lead data", this.leadform .value);
     if (this.leadform .invalid) {
       return; 
@@ -98,7 +127,8 @@ export class MyProfileComponent implements OnInit {
           'gender',
           'City',
           'State',
-          'zipCode'
+          'zipCode',
+          'clientSignature'
         ];
         for (const key of arr) {
           if (key === 'clientNote' || key === 'details') { 
@@ -108,10 +138,11 @@ export class MyProfileComponent implements OnInit {
           }
         }
         console.log("post api");
-        this.service.putleadupdate(this.userId, formData).subscribe(
+        this.service.putleadupdate(this.clientID, formData).subscribe(
           (res: any) => {
             this.swet.SucessToast(`Profile Updated Successfully`);
             console.log('Updated Lead Profile:', res.data);
+            this.ngOnInit()
           },
           (error) => {
             console.error('Error updating lead profile:', error);

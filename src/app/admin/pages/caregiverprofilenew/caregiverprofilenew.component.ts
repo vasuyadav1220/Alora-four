@@ -41,7 +41,7 @@ export class CaregiverprofilenewComponent {
       address:[''],
       caregiverNote:[''],
       password:[''],
-      electronicSignature:[''],
+      // electronicSignature:[''],
     });
   }
 
@@ -68,7 +68,7 @@ leadeupdateapi(): void {
   } else {
     try {
       const formData = new FormData();
-      formData.append('electronicSignature', this.imgs);
+      // formData.append('electronicSignature', this.imgs);
       // console.log("profile data",this.imgs);
       const arr = [
         'caregiverName',

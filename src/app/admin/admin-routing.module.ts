@@ -281,7 +281,7 @@ const routes: Routes = [
         component:CaregiverComponent
       },
       {
-        path:'Clientprofile_view',
+        path:'Clientprofile_view/:id',
         component:ClientprofileComponent
       },
       {
