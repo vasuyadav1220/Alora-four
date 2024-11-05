@@ -13,8 +13,6 @@ import { SweetsalertsServicesService } from 'src/app/sweetsalerts-services.servi
 export class CaregiverprofilenewComponent {
 
 
-
-
   leadform !: FormGroup;
   userId: any;
   url = 'https://cdn-icons-png.flaticon.com/512/149/149071.png';
@@ -55,9 +53,9 @@ export class CaregiverprofilenewComponent {
   // }
 
   getClientProfile(id: string): void {
-    this.service.caregivercreategetbyid(id).subscribe((res: any) => {
+    this.service.caregiverProfileViewForAdmin(id).subscribe((res: any) => {
       this.leadform .patchValue(res.data); // Assuming the response has the client data
-      console.log('Client Profile:', res.data);
+      console.log('Nurse Profile:', res.data);
     });
   }
 

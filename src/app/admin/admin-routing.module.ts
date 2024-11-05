@@ -330,7 +330,7 @@ const routes: Routes = [
         component:DocumentsComponent
       },
       {
-        path:'caregiverprofilenew',
+        path:'caregiverprofilenew/:id',
         component:CaregiverprofilenewComponent
       }
     

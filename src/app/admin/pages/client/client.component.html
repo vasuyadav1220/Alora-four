@@ -58,7 +58,7 @@
                         </div>
                     </td>
                   
-                    <td><a (click)="viewClientProfile(a.id)" style="text-decoration: none;">{{a.name}}</a></td>
+                    <td><a [routerLink]="['/Admin/Clientprofile_view', a.id]" style="text-decoration: none;">{{a.name}}</a></td>
                     <td>{{a.email}}</td>
                     <td> {{ a.caregiverName }} </td>
                     <td>{{a.servicetype}}</td>

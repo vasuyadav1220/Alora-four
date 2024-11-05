@@ -254,9 +254,16 @@ postDoctors(data: any) {
   // }
 
 
-  addlead(data:any){
-    return this.post(superAdminEndPoints.addleads, data)
-   }
+  // addlead(data:any){
+  //   return this.post(superAdminEndPoints.addleads, data)
+  //  }
+
+   
+   addlead(data: any) {
+    const headers = new HttpHeaders({
+    });
+    return this.http.post(superAdminEndPoints.addleads, data, { headers });
+  }
 
    getleadss(){
     return this.get(superAdminEndPoints.getleads)
@@ -278,6 +285,11 @@ public leadData: any;
    caregivercreategetbyid(id:any){
     const adminId = localStorage.getItem('id');
     return this.get(superAdminEndPoints.caregivercreateids + adminId )
+   }
+
+   caregiverProfileViewForAdmin(id:any){
+    // const adminId = localStorage.getItem('id');
+    return this.get(superAdminEndPoints.caregivercreateids + id )
    }
 
    patientByID(id:any){
