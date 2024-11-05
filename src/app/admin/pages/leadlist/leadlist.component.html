@@ -24,29 +24,37 @@
             <form [formGroup]="leadform" (ngSubmit)="onSubmit()">
         
                <div class="col-md-12 mb-3">
+                <label>Name</label>
                   <input type="text" class="form-control" placeholder="Name" formControlName="name">
                </div>
         
                <div class="col-md-12 mb-3">
+                <label>Email</label>
                   <input type="text" class="form-control" placeholder="Email" formControlName="email">
                </div>
         
                <div class="col-md-12  mb-3">
+                <label>Service Type</label>
                   <select class="form-select" formControlName="servicetype" >
                      <option value="">Service Plans</option>
                      <!-- <option value="Caregiver">Caregiver</option> -->
                      <option value="Client">Client</option>
                   </select>
                </div>
-        
                <div class="col-sm-12 mb-3">
+                <label>Note</label>
                   <input type="text" class="form-control" placeholder="Note" formControlName="note">
                </div>
 
                <div class="col-sm-12 mb-3">
-                <input type="text" class="form-control" placeholder="Password" formControlName="password">
+                <label>Password</label>
+                <input type="password" class="form-control" formControlName="password">
              </div>
-        
+             <div class="col-sm-12 mb-3">
+              <label>Certificate</label>
+            
+              <input type="file" class="form-control" formControlName="attachDoc"  (change)="Onupload($event)">
+           </div>
                <div class="modal-footer">
                 <button type="button" class="btn btn"
                     data-bs-dismiss="modal">Close</button>
@@ -94,6 +102,7 @@
         <tr>
           <th style="color: #4F99C6;">SR NO</th>
           <th style="color: #4F99C6;">LEAD NAME</th>
+          <th style="color: #4F99C6;">CERTIFICATE </th>
           <th style="color: #4F99C6;">EMAIL </th>
           <th style="color: #4F99C6;">SERVICES TYPE</th>
           <th style="color: #4F99C6;">NOTE </th>
@@ -106,6 +115,15 @@
         <tr style="background-color: #f9f9f9;" *ngFor="let a of filteredleads;   let i = index">
           <td>{{ (currentPage - 1) * itemsPerPage + i + 1 }}</td>
           <td><a [routerLink]="['/Admin/Clientprofile_view', a.id]" style="text-decoration: none;">{{a.name}}</a></td>
+          <td>
+            <div class="mt-2">
+                <img 
+                    style="width: 50px; border-radius: 30px; text-align: center;" 
+                    src="{{a.attachDoc}}" 
+                    alt="img"
+                />
+            </div>
+        </td>
           <td>{{a.email}}</td>
           <td>{{a.servicetype}}</td>
           <td>{{a.note}}</td>

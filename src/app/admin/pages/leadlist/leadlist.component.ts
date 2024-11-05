@@ -27,7 +27,11 @@ export class LeadlistComponent {
   userId:any
   dataSend: any
 
-  leadform!: FormGroup;
+  leadform !: FormGroup;
+  url = 'https://cdn-icons-png.flaticon.com/512/149/149071.png';
+  imgs!: File;
+    imagesBox = '../../../../../../assets/img/product/product1.jpg'
+
 showClientCards = false;
 // planDetails: PlanDetail[] = [  ];
 selectedCardId: number | null = null;
@@ -43,11 +47,12 @@ selectedCardId: number | null = null;
     console.log( 'admin id', this.userId);
     this.getPatients();
      this.leadform = this.fb.group({
-    name:['',Validators.required]  ,      
-    email :['',Validators.required]   ,   
-    servicetype :['',Validators.required],
-    note  :['',Validators.required],
+    name:['',Validators.required],    
+    email:['',Validators.required],   
+    servicetype:['',Validators.required],
+    note:['',Validators.required],
     password:['',Validators.required],
+    attachDoc:['',Validators.required],
   });
 
   // this.getPlans();
@@ -138,40 +143,74 @@ toggleVerified(data: any) {
 
 
 
+// onSubmit(): void {
+//   if (this.leadform.valid) {
+   
+//     this.api.addlead(this.leadform.value).subscribe((res: any) => {
+//       this.swet.SucessToast(`Generate Lead Successfully`);
+//       console.log('form added', res);
 
-
-// onServiceTypeChange() {
-//   this.showClientCards = this.leadform.get('servicetype')?.value === 'Client';
-// }
-
-// getPlans(){
-//   this.service.getPlans().subscribe((res:any)=>{
-//     console.log(res)
-//     this.planDetails = res.data;
-//   })
-// }
-
-// selectCard(cardId: number) {
-//   this.selectedCardId = cardId;
+//       this.leadform.reset();
+//       this.selectedCardId = null;
+//       this.showClientCards = false;
+//     });
+//   }
 // }
 
 onSubmit(): void {
-  if (this.leadform.valid) {
-    // Create form data with selected card
-    // const formData = {
-    //   ...this.leadform.value,
-    //   planId: this.selectedCardId
-    // };
+  if (this.leadform .invalid) {
+    return; 
+  } else {
+    try {
+      const formData = new FormData();
+      formData.append('attachDoc', this.imgs);
+      // console.log("profile data",this.imgs);
+      const arr = [
+        'name',      
+    'email' , 
+    'servicetype' ,
+    'note'  ,
+    'password'
+      ];
+      for (const key of arr) {
+        if (key === 'clientNote' || key === 'details') { 
+          formData.append(key, JSON.stringify(this.leadform .get(key)?.value));
+        } else {
+          formData.append(key, this.leadform .get(key)?.value);
+        }
+      }
+      console.log("post api");
+      this.api.addlead( formData).subscribe(
+        (res: any) => {
+          this.swet.SucessToast(`Generate Lead Successfully`);
 
-    // console.log(formData);
-    this.api.addlead(this.leadform.value).subscribe((res: any) => {
-      this.swet.SucessToast(`Generate Lead Successfully`);
-      console.log('form added', res);
+          // this.swet.SucessToast(`Profile Updated Successfully`);
+          console.log('Updated Lead Profile:', res.data);
+        },
+        (error) => {
+          console.error('Error updating lead profile:', error);
+        }
+      );
+    } catch (err) {
+      console.log(err);
+    }
+  }
+}
 
-      this.leadform.reset();
-      this.selectedCardId = null;
-      this.showClientCards = false;
-    });
+  
+Onupload(event: any) {
+  if (event.target.files.length > 0) {
+    this.imgs = event.target.files[0];
+  }
+  if (event.target.files && event.target.files[0]) {
+    const filesAmount = event.target.files.length;
+    for (let i = 0; i < filesAmount; i++) {
+      const reader = new FileReader();
+      reader.onload = (event: any) => {
+        this.imagesBox = event.target.result;
+      }
+      reader.readAsDataURL(event.target.files[i]);
+    }
   }
 }
 
