@@ -177,9 +177,10 @@ postDoctors(data: any) {
     return this.delete(superAdminEndPoints.nursesById + id )
    }
 
-  //  addpatientsForSuperAdmin(data :any){
-  //   return this.post(superAdminEndPoints.addpatients, data)
-  //  }
+   deletePatient(id:any){
+    return this.delete(superAdminEndPoints.addpatients + id )
+
+   }
 
 
 

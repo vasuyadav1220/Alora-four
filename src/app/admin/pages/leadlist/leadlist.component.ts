@@ -211,6 +211,17 @@ Onupload(event: any) {
   }
 }
 
+itemDelete(itemDlt: any): void {
+  this.api.deletePatient(itemDlt.id).subscribe(
+    () => {
+     window.location.reload();
+      console.log('item deleted successfully');
+    },
+    (error) => {
+      console.error('Error deleting item', error);
+    }
+  );
+}
 
 
 
