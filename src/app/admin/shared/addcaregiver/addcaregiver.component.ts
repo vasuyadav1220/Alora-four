@@ -26,7 +26,7 @@ export class AddcaregiverComponent  implements OnInit {
       caregiverName: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
       address: [''],
-      // electronicSignature: [''],
+      caregiverDocument: [''],
       caregiverNote: [''],
       password: ['', Validators.required]
     });
@@ -49,53 +49,54 @@ export class AddcaregiverComponent  implements OnInit {
   }
 
 
-  // caregivercreted() {
-  //   console.log("After Doctor data", this.caregiverForm.value);
-  //   if (this.caregiverForm.invalid) {
-  //     return;
-  //   } else {
-  //     try {
-  //       console.log("Doctor data", this.caregiverForm.value);
+  caregivercreted() {
+    console.log("After Doctor data", this.caregiverForm.value);
+    if (this.caregiverForm.invalid) {
+      return;
+    } else {
+      try {
+        console.log("Doctor data", this.caregiverForm.value);
         
-  //       const formData: any = new FormData();
+        const formData: any = new FormData();
+        formData.append('caregiverDocument', this.imgs);
         
         
-  //       const arr = [
-  //         'caregiverName',
-  //         'email',
-  //         'address',
-  //         'caregiverNote',
-  //         'password'
-  //       ];
+        const arr = [
+          'caregiverName',
+          'email',
+          'address',
+          'caregiverNote',
+          'password'
+        ];
 
-  //       for (const key of arr) {
-  //         formData.append(key, this.caregiverForm.get(key)?.value);
-  //       }
-  //       console.log("post api fire", this.caregiverForm);
+        for (const key of arr) {
+          formData.append(key, this.caregiverForm.get(key)?.value);
+        }
+        console.log("post api fire", this.caregiverForm);
      
-  //       this.service.createcaregiver(formData).subscribe((res: any) => {
-  //         console.log(res);
-  //         const patientName = res.data.name;
-  //         this.swet.SucessToast(`Caregiver ${patientName} created successfully`);
+        this.service.createcaregiver(formData).subscribe((res: any) => {
+          console.log(res);
+          const patientName = res.data.name;
+          this.swet.SucessToast(`Caregiver created successfully`);
         
-  //       },
-  //       (err) => {
-  //         console.log(err);
-  //       });
+        },
+        (err) => {
+          console.log(err);
+        });
         
-  //     } catch (err) {
-  //       console.log(err);
-  //     }
-  //   }
-  // }
-
-  addCareGiver(){
-    this.service.createcaregiver(this.caregiverForm.value).subscribe((res:any)=>{
-      console.log(res);
-      const patientName = res.data.name;
-      this.swet.SucessToast(`Caregiver ${patientName} created successfully`);
-      this.caregiverForm.reset();
-    })
+      } catch (err) {
+        console.log(err);
+      }
+    }
   }
+
+  // addCareGiver(){
+  //   this.service.createcaregiver(this.caregiverForm.value).subscribe((res:any)=>{
+  //     console.log(res);
+  //     const patientName = res.data.name;
+  //     this.swet.SucessToast(`Caregiver ${patientName} created successfully`);
+  //     this.caregiverForm.reset();
+  //   })
+  // }
 
 }
