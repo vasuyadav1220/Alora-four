@@ -48,10 +48,7 @@ export class DocumentComponent implements OnInit {
 
     imgs!: File;
     imagesBox = '../../../../../../assets/img/product/product1.jpg'
-
-
-
-
+    
   Onupload(event: any) {
     if (event.target.files.length > 0) {
       this.imgs = event.target.files[0];

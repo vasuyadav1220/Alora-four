@@ -1,0 +1,72 @@
+
+
+
+<div class="container mt-5 ">
+    <div class="col-lg-12 col-md-12 text-white gap-2 mt-2" style="background-color: #438EB9; height: 40px;">
+        <h5 class="mt-3 p-2">Add Certificate</h5>
+    </div>
+
+    <div class="card mt-4">
+        <div class="card-body">
+            <form [formGroup]="certificateForm" class="row g-3">
+                <div class="col-md-6" >
+                  <label for="caregiverCertificate">Caregiver Certificate:</label>
+                  <input id="caregiverCertificate" class="form-control" type="file" formControlName="caregiverCertificate" id="fileInput" (change)="Onupload($event)" />
+                </div>
+                
+                <div class="col-md-6">
+                  <label for="descriprtion">Description:</label>
+                  <textarea id="descriprtion" placeholder="Enter description here" class="form-control" formControlName="descriprtion" ></textarea>
+                </div>
+                
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                    <button type="submit" (click)="addCertificate()" class="btn btn-primary">Add </button>
+                </div>
+                
+              </form>
+        </div>
+    </div>
+
+    <div class="col-lg-12 col-md-12 text-white gap-2 mt-4" style="background-color: #438EB9; height: 40px;">
+        <h5 class="mt-3 p-2">All Certificate</h5>
+    </div>
+    
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 mt-4">
+        <div class="table-responsive">
+
+            <table class="table table-striped custom-table table-bordered">
+                <thead>
+                  <tr>
+                    <th>Certificate</th>
+                    <th> Description</th>
+                    
+                    
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let clientdocument of certificateData;">
+                   
+  
+                       <td>
+                          <div class="mt-2">
+                              <img 
+                                  style="width: 50px; border-radius: 30px; text-align: center;" 
+                                  src="{{clientdocument.caregiverCertificate}}" 
+                                  alt="img"
+                              />
+                          </div>
+                      </td>
+                      
+                    <td >{{clientdocument.descriprtion}}</td>
+                   
+                  </tr>
+                </tbody>
+              </table>
+
+        
+        </div>
+        
+    </div>
+    
+</div>
+

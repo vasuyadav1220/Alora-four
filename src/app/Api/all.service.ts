@@ -280,10 +280,6 @@ public leadData: any;
     return this.get(superAdminEndPoints.caregivercreateids + adminId )
    }
 
-   
-
-
-
    patientByID(id:any){
     const patientId = localStorage.getItem('patient_id');
     return this.get(superAdminEndPoints.leadupdate + patientId )
@@ -441,6 +437,17 @@ public leadData: any;
   getNurseLeads(id:any){
     const nurseId = localStorage.getItem('caregiverid');
     return this.get(superAdminEndPoints.nurseLeads + nurseId)
+  }
+
+  addCertificate(data:any){
+    const headers = new HttpHeaders({
+    });
+    return this.http.post(superAdminEndPoints.certificate , data , { headers });
+    // return this.post(superAdminEndPoints.certificate,data)
+  }
+
+  getCertificate(){
+   return this.get(superAdminEndPoints.certificateGet)
   }
 
 }

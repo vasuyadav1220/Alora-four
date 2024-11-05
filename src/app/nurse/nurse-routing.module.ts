@@ -13,6 +13,7 @@ import { DocumentComponent } from './document/document.component';
 import { LeadsComponent } from './pages/leads/leads.component';
 import { NurseVerifyDocumentComponent } from './pages/nurse-verify-document/nurse-verify-document.component';
 import { CaregiverprofileComponent } from './pages/caregiverprofile/caregiverprofile.component';
+import { CertificateComponent } from './certificate/certificate.component';
 
 const routes: Routes = [
   { path: '', component: NurseComponent,
@@ -69,6 +70,10 @@ const routes: Routes = [
       {
         path:'caregiverprofile',
         component:CaregiverprofileComponent
+      },
+      {
+        path:'caregiver_certificate',
+        component:CertificateComponent
       }
     ]
    }

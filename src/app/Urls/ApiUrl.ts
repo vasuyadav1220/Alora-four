@@ -67,5 +67,6 @@ export const superAdminEndPoints = {
      getDocumentByNurseId: `${baseUrl}document/active?caregiverId=`,
      getDocumentByNurseIdArchive: `${baseUrl}document/expire?caregiverId=`,
      nurseLeads: `${baseUrl}lead/caregiverid/`,
+     certificate:`${baseUrl}caregivercertificate`,
+     certificateGet:`${baseUrl}caregivercertificates`,
 }
-

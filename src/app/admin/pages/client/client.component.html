@@ -35,10 +35,10 @@
                 <tr>
                     <th style="color: #4F99C6;">ID</th>
                     <th style="color: #4F99C6;">MEDICAID ID</th>
-                    <th style="color: #4F99C6;">ASSIGN CAREGIVER</th>
+                    <th style="color: #4F99C6;">ASSIGN CAREGIVERS</th>
                     <th style="color: #4F99C6;">NAME</th>
                     <th style="color: #4F99C6;">EMAIL</th>
-                    <th style="color: #4F99C6;">ASSIGNED CAREGIVER</th>
+                    <th style="color: #4F99C6;">ASSIGNED CAREGIVERS</th>
                     <th style="color: #4F99C6;">SERVICE TYPE</th>
                     <th style="color: #4F99C6;">CLIENT NOTES</th>
                     <!-- <th style="color: #4F99C6;">ATTACH DOCUMENT</th> -->
@@ -52,7 +52,7 @@
                     <td>
                         <div>
                             <select class="form-select" (change)="updateCaregiverSelection(a.id, $event)">
-                                <option value="">Select Caregiver</option>
+                                <option value="">Select Caregivers</option>
                                 <option *ngFor="let count of patientsCountss" [value]="count.id">{{count.caregiverName}}</option>
                             </select>
                         </div>

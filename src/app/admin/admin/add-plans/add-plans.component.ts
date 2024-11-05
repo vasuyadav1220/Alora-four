@@ -79,7 +79,7 @@ export class AddPlansComponent {
         this.service.addPlansss(formData).subscribe((res: any) => {
           console.log(res);
           const patientName = res.data.name;  // Get the doctor's name from the response
-          this.swet.SucessToast(`Caregiver ${patientName} created successfully`);
+          this.swet.SucessToast(`Caregivers ${patientName} created successfully`);
           // this.route.navigate(['Admin/view_patients']);
         },
         (err) => {
