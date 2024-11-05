@@ -60,6 +60,7 @@ export class DocumentsComponent implements OnInit , AfterViewInit {
       expiryDate:new FormControl('',Validators.required),
       clientSignature:new FormControl('',Validators.required),
       clientId:new FormControl(this.userId),
+      clientcomment:new FormControl('',Validators.required),
     })
   }
 
@@ -100,6 +101,7 @@ export class DocumentsComponent implements OnInit , AfterViewInit {
           'expiryDate',
           'clientId',
           'clientSignature',
+          'clientcomment'
         ];
 
     
