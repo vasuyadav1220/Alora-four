@@ -1,7 +1,7 @@
 <div class="container mt-5">
 
     <div class="col-lg-12 col-md-12 text-white gap-2 mt-2" style="background-color: #438EB9; height: 40px;">
-        <h5 class="mt-3 p-2">Add Nurse Document</h5>
+        <h5 class="mt-3 p-2">Add Caregivers Document</h5>
     </div>
     <div class="card mt-4">
         <div class="card-body">
@@ -15,11 +15,10 @@
                     <input type="date" class="form-control" formControlName="expiryDate">
                 </div>
                 <div class="col-md-12">
-                  <label class="form-label fw-bold" style="color: rgb(97, 95, 95);">Nurse Comment</label>
+                  <label class="form-label fw-bold" style="color: rgb(97, 95, 95);">Comment</label>
         
-                  <textarea name=" " id="" type="text" class="form-control" formControlName="nursecomment" placeholder="Nurse Comment"></textarea>
-        
-               
+                  <textarea name=" " id="" type="text" class="form-control" formControlName="nursecomment" placeholder="Caregivers Comment"></textarea>
+      
                 </div>
                 <div class="col-12 d-flex justify-content-end">
                     <button type="submit" class="btn btn-primary" (click)="addDocument()">Add Document</button>
@@ -50,9 +49,8 @@
     <div class="tab-content" id="documentTabContent">
         <!-- Active Documents Tab -->
         <div class="tab-pane fade show active" id="active" role="tabpanel" aria-labelledby="active-tab">
-            <h5>Active Documents</h5>
-            
-            <div class="table-responsive">
+          
+            <div class="table-responsive mt-4">
 
                 <table class="table table-striped custom-table table-bordered">
                     <thead>
@@ -60,9 +58,9 @@
                         <th>File</th>
                         <th> Active Date</th>
                         <th>Expires date</th>
-                        <th>Nurse Comment</th>
+                        <th>Caregivers Comment</th>
 
-                        <!-- <th>Action</th> -->
+                        <th>Action</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -72,7 +70,7 @@
                            <td>
                               <div class="mt-2">
                                   <img 
-                                      style="width: 50px; border-radius: 30px; text-align: center;" 
+                                      style="width: 50px;height: 50px; border-radius: 30px; text-align: center;" 
                                       src="{{clientdocument.document}}" 
                                       alt="img"
                                   />
@@ -82,11 +80,14 @@
                         <td style="color: green;">{{clientdocument.created_at  | date:'dd-MM-yyyy'}}</td>
                         <td class="expires-date" style="color: red;">{{clientdocument.expiryDate | date:'dd-MM-yyyy'}}</td>
                         <td>{{clientdocument.nursecomment}}</td>
-                        <!-- <td>
-                          <i class="fa-sharp fa-solid fa-download p-3" style="color: #438EB9;font-size: 20px;"></i>
-                          <i class="fa-sharp fa-solid fa-square-pen p-3" style="color: rgb(82, 194, 82);font-size: 20px;"></i>
-                          <i class="fa-solid fa-trash p-3" style="color: rgb(175, 40, 40); font-size: 20px;"></i>
-                        </td> -->
+                        <td>
+                          <button 
+                          class="btn btn-primary" 
+                          (click)="sendForSignature(clientdocument)" 
+                          [disabled]="clientdocument.isSent">
+                          {{ clientdocument.isSent ? 'Document sent for verification' : 'Send for Signature' }}
+                        </button>
+                        </td>
                       </tr>
                     </tbody>
                   </table>
@@ -108,9 +109,8 @@
                         <th>File</th>
                         <th>Date</th>
                         <th>Expires</th>
-                        <th>Nurse Comment</th>
-
-                        <!-- <th>Action</th> -->
+                        <th>Caregivers Comment</th>
+<th>Action</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -129,15 +129,16 @@
                     <td style="color: green;">{{a.created_at  | date:'dd-MM-yyyy'}}</td>
                     <td class="expires-date" style="color: red;">{{a.expiryDate  | date:'dd-MM-yyyy'}}</td>
                     <td>{{a.nursecomment}}</td>
-                        <!-- <td>
-                          <i class="fa-sharp fa-solid fa-download p-3" style="color: #438EB9;font-size: 20px;"></i>
-                          <i class="fa-sharp fa-solid fa-square-pen p-3" style="color: rgb(82, 194, 82);font-size: 20px;"></i>
-                          <i class="fa-solid fa-trash p-3" style="color: rgb(175, 40, 40); font-size: 20px;"></i>
-                        </td> -->
+                   
+                       
                       </tr>
                    
                     </tbody>
-                  </table>            </div>
+                  </table>     
+                  <div *ngIf="message" class="mt-3">
+                    <p [ngClass]="{ 'text-success': success, 'text-danger': !success }">{{ message }}</p>
+                  </div>
+                       </div>
         </div>
     </div>
     </div>

@@ -3,6 +3,11 @@ const baseUrl = 'https://osmelvillarreal.vercel.app/api/v1/';
 const adminId = localStorage.getItem('id')
 console.log('url id for all',adminId)
 
+const adobeUrl = "https://api.in1.adobesign.com/api/rest/v6/transientDocuments";
+
+export const adobeEndPoints = {
+    documentsend: `${adobeUrl}transientDocuments`,
+}
 
 export const superAdminEndPoints = {
     superAdminLogin: `${baseUrl}login`,

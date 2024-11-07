@@ -5,6 +5,8 @@ import { superAdminEndPoints } from '../Urls/ApiUrl';
 // import { ToastrService } from 'ngx-toastr';
 import { Observable,BehaviorSubject  } from 'rxjs';
 
+import { map } from 'rxjs/operators';
+
 
 
 @Injectable({
@@ -12,11 +14,73 @@ import { Observable,BehaviorSubject  } from 'rxjs';
 })
 export class AllService extends HttpService {
 
+  private apiUrl = 'https://api.in1.adobesign.com/api/rest/v6';
+  private accessToken = '3AAABLblqZhDKdk2UgVMQ8xtr2WsOKdRGGx4rtkmk1Z5US51uVfBcrYC0DBfSJ5uBSMpEHQ_EGNZ3DJ0gwKTP1MVo9YlqLp0V';
+
+  uploadDocument(file: File) {
+    const url = `${this.apiUrl}/transientDocuments`;
+
+    // Set headers
+    const headers = new HttpHeaders({
+      Authorization: `Bearer ${this.accessToken}`
+    });
+
+    // Prepare form data
+    const formData = new FormData();
+    formData.append('File', file);
+    formData.append('File-Name', file.name);
+
+    // Make POST request
+    return this.http.post<{ transientDocumentId: string }>(url, formData, { headers });
+  }
+
+  createAgreement(transientDocumentId: string, recipientEmail: string) {
+    const url = `${this.apiUrl}/agreements`;
+  
+    // Set headers
+    const headers = new HttpHeaders({
+      Authorization: `Bearer ${this.accessToken}`,
+      'Content-Type': 'application/json'
+    });
+  
+    // Prepare request body
+    const body = {
+      fileInfos: [
+        {
+          transientDocumentId: transientDocumentId
+        }
+      ],
+      name: 'Sample Agreement',
+      participantSetsInfo: [
+        {
+          memberInfos: [
+            {
+              email: recipientEmail
+            }
+          ],
+          order:1,
+          role: 'SIGNER'
+        }
+      ],
+      
+      signatureType: 'ESIGN',
+      state: 'IN_PROCESS'
+    };
+  
+    // Make POST request
+    return this.http.post(url, body, { headers });
+  }
+  
+
   constructor(public override http:HttpClient,
     // private _tos:ToastrService
   ) {
     super(http)
    }
+
+
+ 
+
 
    superAdminLogin(data: any) {
     return this.post(superAdminEndPoints.superAdminLogin,data)

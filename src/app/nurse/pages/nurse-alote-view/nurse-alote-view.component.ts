@@ -13,6 +13,7 @@ import { SweetsalertsServicesService } from 'src/app/sweetsalerts-services.servi
 })
 export class NurseAloteViewComponent implements OnInit , AfterViewInit {
 
+
   @ViewChild('signatureCanvas') signatureCanvas!: ElementRef<HTMLCanvasElement>;
   private signaturePad!: SignaturePad;
 

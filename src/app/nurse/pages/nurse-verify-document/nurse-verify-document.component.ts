@@ -13,6 +13,49 @@ import { Router } from '@angular/router';
 
 export class NurseVerifyDocumentComponent implements OnInit, AfterViewInit {
 
+  file: File | null = null;
+  recipientEmail: string = '';
+  message: string = '';
+  success: boolean = false;
+
+  onFileChange(event: Event) {
+    const target = event.target as HTMLInputElement;
+    if (target.files) {
+      this.file = target.files[0];
+    }
+  }
+
+  onSubmit() {
+    if (this.file && this.recipientEmail) {
+      this.api.uploadDocument(this.file).subscribe({
+        next: (response) => {
+          const transientDocumentId = response.transientDocumentId;
+
+          // Create the agreement with the obtained transientDocumentId
+          this.api.createAgreement(transientDocumentId, this.recipientEmail).subscribe({
+            next: (agreementResponse) => {
+              this.message = 'Agreement created successfully!';
+           this.swet.SucessToast(`${this.message}`);
+              this.success = true;
+            },
+            error: (err) => {
+              this.message = 'Error creating agreement: ' + err.message;
+              this.success = false;
+            }
+          });
+        },
+        error: (err) => {
+          this.message = 'Error uploading document: ' + err.message;
+          this.success = false;
+        }
+      });
+    } else {
+      this.message = 'Please provide both file and recipient email.';
+      this.success = false;
+    }
+  }
+
+
   @ViewChild('signatureCanvas') signatureCanvas!: ElementRef<HTMLCanvasElement>;
   private signaturePad!: SignaturePad;
 

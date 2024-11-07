@@ -17,6 +17,7 @@ import { LeadsComponent } from './pages/leads/leads.component';
 import { NurseVerifyDocumentComponent } from './pages/nurse-verify-document/nurse-verify-document.component';
 import { CaregiverprofileComponent } from './pages/caregiverprofile/caregiverprofile.component';
 import { CertificateComponent } from './certificate/certificate.component';
+import { SafeUrlPipe } from '../safe-url.pipe';
 
 
 @NgModule({
@@ -34,7 +35,8 @@ import { CertificateComponent } from './certificate/certificate.component';
     LeadsComponent,
     NurseVerifyDocumentComponent,
     CaregiverprofileComponent,
-    CertificateComponent
+    CertificateComponent,
+    SafeUrlPipe
   ],
   imports: [
     CommonModule,

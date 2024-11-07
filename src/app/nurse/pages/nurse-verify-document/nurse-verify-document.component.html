@@ -2,9 +2,9 @@
   
   <div class="col-lg-12 col-md-12 text-white gap-2 mt-5"
     style="white-space: wrap ;background-color: #438EB9; height: 40px; ">
-    <h5 class="mt-3  p-2">List Client Documents</h5>
+    <h5 class="mt-3  p-2">Upload Verify Documents</h5>
   </div>
-  <div class="card p-3 shadow">
+  <!-- <div class="card p-3 shadow">
     <nav>
       <div class="nav nav-tabs mb-3" id="nav-tab" role="tablist">
         <button class="nav-link active" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-home" type="button"
@@ -27,7 +27,7 @@
                     <th>Client Signature</th>
                     <th>Active Date</th>
                     <th>Expires date</th>
-                    <!-- <th>Nurse Comment Verified</th> -->
+                     <th>Nurse Comment Verified</th> 
 
                     <th>Action</th>
                   </tr>
@@ -58,15 +58,15 @@
                    
                     <td style="color: green;">{{clientdocument.created_at  | date:'dd-MM-yyyy'}}</td>
                     <td class="expires-date" style="color: red;">{{clientdocument.expiryDate  | date:'dd-MM-yyyy'}}</td>
-                    <!-- <td >{{clientdocument.nursecommentverified}}</td> -->
+                  
 
                     <td>
-                                           <!-- Button trigger modal -->
+                                      
 <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal"  (click)="setClientId(clientdocument.clientId)">
   Verify
 </button>
 
-<!-- Modal -->
+
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
@@ -82,7 +82,7 @@
           <textarea name="" id=""  type="text" class="form-control" formControlName="nursecommentverified"></textarea>
         
           Are you sure you want to verify this client ?
-          <!-- <img [src]="profileData"  alt=""> -->
+        
           <input type="text" formControlName="caregiverSignature" [(ngModel)]="profileData" hidden >
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
@@ -115,10 +115,7 @@
                     <th>File</th>
                     <th>Date</th>
                     <th>Expires</th>
-                    <!-- <th>Nurse Comment Verified</th> -->
-
-                    
-                  
+                   
                   </tr>
                 </thead>
                 <tbody>
@@ -136,9 +133,7 @@
                
                 <td style="color: green;">{{a.created_at  | date:'dd-MM-yyyy'}}</td>
                 <td class="expires-date" style="color: red;">{{a.expiryDate  | date:'dd-MM-yyyy'}}</td>
-                <!-- <td >{{a.nursecommentverified}}</td> -->
-
-                   
+          
                   </tr>
                
                 </tbody>
@@ -150,4 +145,79 @@
   
       </div>
     </div>
+  </div> -->
+
+
+  
+  <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 mt-5 ">
+    <div class="container">
+      <!-- <h2>Adobe Sign - Create Agreement</h2> -->
+      
+      <form (ngSubmit)="onSubmit()" #adobeSignForm="ngForm">
+      
+        <div class="form-group">
+          <label for="file">Select Document:</label>
+          <input 
+            type="file" 
+            id="file" 
+            (change)="onFileChange($event)" 
+            class="form-control" 
+            required />
+        </div>
+<!--     
+        <div class="form-group">
+          <label for="email">Recipient Email:</label>
+          <input 
+            type="email"
+            id="email" 
+            [(ngModel)]="recipientEmail" 
+            name="email" 
+            class="form-control" 
+            placeholder="Enter recipient's email" 
+            required />
+        </div>
+     -->
+     
+        <button 
+          type="submit" 
+          class="btn btn-primary" 
+          [disabled]="!file || !recipientEmail">
+          Add
+        </button>
+      </form>
+   
+      <div *ngIf="message" class="mt-3">
+        <p [ngClass]="{ 'text-success': success, 'text-danger': !success }">{{ message }}</p>
+      </div>
+    </div>
+    
   </div>
+
+  
+  <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+    <table *ngIf="clientbyidatass && clientbyidatass.length > 0; else noData">
+      <tr *ngFor="let a of clientbyidatass;">
+        <td>
+          <div class="mt-2">
+            <img 
+              style="width: 50px; border-radius: 30px; text-align: center;" 
+              src="{{a.document}}" 
+              alt="img"
+            />
+          </div>
+        </td>
+        <td style="color: green;">{{a.created_at | date:'dd-MM-yyyy'}}</td>
+        <td class="expires-date" style="color: red;">{{a.expiryDate | date:'dd-MM-yyyy'}}</td>
+      </tr>
+    </table>
+    
+    <ng-template #noData>
+      <div class="no-data-message">
+        No data available
+      </div>
+    </ng-template>
+    
+    
+  </div>
+  
+  

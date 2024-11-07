@@ -1,0 +1,24 @@
+.container {
+    max-width: 500px;
+    margin: 20px auto;
+  }
+  
+  .form-group {
+    margin-bottom: 15px;
+  }
+  
+
+  .no-data-message {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 200px; /* Adjust height to match the design */
+    font-size: 1.5rem; /* Larger text */
+    color: #555; /* Soft grey color */
+    font-weight: bold;
+    background-color: #f9f9f9; /* Light background */
+    border: 1px solid #ddd; /* Light border */
+    border-radius: 8px;
+    text-align: center;
+  }
+  

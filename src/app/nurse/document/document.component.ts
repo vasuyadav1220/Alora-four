@@ -12,9 +12,89 @@ import { SweetsalertsServicesService } from 'src/app/sweetsalerts-services.servi
 export class DocumentComponent implements OnInit {
   addDocumentForm:FormGroup;
   userId: any;
+ 
+  message: string = '';
+  success: boolean = false;
+  nurseEmail: string | null = null;
+
+
+  sendForSignature(document: any) {
+    if (!this.nurseEmail) {
+      this.message = 'Nurse email not found in local storage';
+      this.success = false;
+      return;
+    }
+
+    const file = this.urlToFile(document.document);
+
+    // Disable button and initiate API call
+    document.isSent = true;
+    this.api.uploadDocument(file).subscribe({
+      next: (response) => {
+        const transientDocumentId = response.transientDocumentId;
+
+        this.api.createAgreement(transientDocumentId, this.nurseEmail!).subscribe({
+          next: () => {
+            this.message = 'Agreement created successfully!';
+            this.success = true;
+          },
+          error: (err) => {
+            this.message = 'Error creating agreement: ' + err.message;
+            this.success = false;
+            document.isSent = false; // Re-enable button on error
+          }
+        });
+      },
+      error: (err) => {
+        this.message = 'Error uploading document: ' + err.message;
+        this.success = false;
+        document.isSent = false; // Re-enable button on error
+      }
+    });
+  }
+
+  urlToFile(url: string): File {
+    const blob = new Blob([url], { type: 'application/pdf' });
+    return new File([blob], 'document.pdf', { type: blob.type });
+  }
+
+  // sendForSignature(document: any) {
+  //   // Assuming `document.document` is the file URL
+  //   const file = this.urlToFile(document.document);
+  //   const recipientEmail = this.nurseEmail; // Modify to get dynamically if needed
+
+  //   this.api.uploadDocument(file).subscribe({
+  //     next: (response) => {
+  //       const transientDocumentId = response.transientDocumentId;
+
+  //       // Create the agreement with the obtained transientDocumentId
+  //       this.api.createAgreement(transientDocumentId, recipientEmail).subscribe({
+  //         next: (agreementResponse) => {
+  //           this.message = 'Agreement created successfully!';
+  //           this.success = true;
+  //         },
+  //         error: (err) => {
+  //           this.message = 'Error creating agreement: ' + err.message;
+  //           this.success = false;
+  //         }
+  //       });
+  //     },
+  //     error: (err) => {
+  //       this.message = 'Error uploading document: ' + err.message;
+  //       this.success = false;
+  //     }
+  //   });
+  // }
+
+  // Helper function to convert URL to File object
+  // urlToFile(url: string): File {
+  //   const blob = new Blob([url], { type: 'application/pdf' }); // Adjust MIME type as necessary
+  //   return new File([blob], 'document.pdf', { type: blob.type });
+  // }
 
   constructor(private api:AllService,private swet:SweetsalertsServicesService){
     const userIdString = localStorage.getItem('id');
+    // this.nurseEmail = localStorage.getItem('email');
     this.userId = userIdString ? parseInt(userIdString, 10) : null;
     this.addDocumentForm=new FormGroup({
       document:new FormControl('',Validators.required),
@@ -26,7 +106,8 @@ export class DocumentComponent implements OnInit {
 
   ngOnInit(): void {
     this.getDocumentByNurseId();
-    this.getDocumentByNurseIdArchivessss()
+    this.getDocumentByNurseIdArchivessss();
+    this.nurseEmail = localStorage.getItem('email');
   }
 
   document:any[]=[];
